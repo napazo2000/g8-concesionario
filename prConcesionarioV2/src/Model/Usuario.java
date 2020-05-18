@@ -3,7 +3,7 @@ package Model;
 public class Usuario {
 	int idUsuario;
 	String correo;
-    int password;
+    String password;
     String dni;
     String nombre;
     String apellidos;
@@ -25,7 +25,7 @@ public class Usuario {
     public String getCorreo() {
 		return correo;
 	}
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
 	public String getDni() {
@@ -71,7 +71,7 @@ public class Usuario {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	public void setDni(String dni) {

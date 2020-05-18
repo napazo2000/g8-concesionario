@@ -27,7 +27,10 @@ public class VistaPanelEmpleado extends JFrame {
 	private javax.swing.JPanel panel1;
 	private javax.swing.JPanel panel2;
 	
-	public VistaPanelEmpleado() {
+	public static int idVendedor;
+	
+	public VistaPanelEmpleado(int value) {
+		idVendedor = value;
 		initComponents();
 		setExtendedState(MAXIMIZED_BOTH);
 	}
@@ -80,14 +83,14 @@ public class VistaPanelEmpleado extends JFrame {
 		venta.setText("Nueva venta");
 		venta.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//ventaActionPerformed(evt);
+				ventaActionPerformed(evt);
 			}
 		});	
 		
 		alquiler.setText("Nuevo alquiler");
 		alquiler.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//alquilerActionPerformed(evt);
+				alquilerActionPerformed(evt);
 			}
 		});
 		
@@ -267,6 +270,18 @@ public class VistaPanelEmpleado extends JFrame {
 		dispose();
 	}
 	
+	private void ventaActionPerformed(ActionEvent evt) {
+		VistaVenta v = new VistaVenta(idVendedor);
+		v.setVisible(true);
+		dispose();
+	}
+
+	private void alquilerActionPerformed(ActionEvent evt) {
+		VistaAlquiler v = new VistaAlquiler(idVendedor);
+		v.setVisible(true);
+		dispose();
+	}
+	
 	private void gestorVehiculosActionPerformed(java.awt.event.ActionEvent evy) {
 		VistaGestorVehiculos v = new VistaGestorVehiculos();
 		v.setVisible(true);
@@ -301,8 +316,7 @@ public class VistaPanelEmpleado extends JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            	VistaPanelEmpleado v = new VistaPanelEmpleado();
-            	v.setVisible(true);
+            	new VistaPanelEmpleado(0).setVisible(true);
             }
         });
     } 

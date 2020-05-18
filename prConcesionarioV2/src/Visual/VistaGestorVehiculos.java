@@ -2,6 +2,8 @@ package Visual;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -27,6 +29,7 @@ public class VistaGestorVehiculos extends JFrame {
 	    private javax.swing.JButton BtnClean;
 	    private javax.swing.JButton BtnExit;
 	    private javax.swing.JButton BtnSearch;
+	    private javax.swing.JButton calcular;
 	    
 	    private javax.swing.JLabel texto_Modelo;
 	    private javax.swing.JLabel texto_Precio;
@@ -39,8 +42,8 @@ public class VistaGestorVehiculos extends JFrame {
 	    private javax.swing.JLabel texto_TipoCombustible;
 	    private javax.swing.JLabel texto_TipoCambio;
 	    private javax.swing.JLabel texto_AnyoFabricacion;
-	    private javax.swing.JLabel texto_Iva;
-	    private javax.swing.JLabel texto_TipoPago;
+	    private javax.swing.JLabel texto_PrecioSinIva;
+	    private javax.swing.JLabel texto_Matricula;
 	    private javax.swing.JLabel texto_Unidades;
 	    
 	    private javax.swing.JPanel jPanel1;
@@ -53,17 +56,17 @@ public class VistaGestorVehiculos extends JFrame {
 	    private javax.swing.JTextField txtc;
 	    private javax.swing.JTextField txtMarca;
 	    private javax.swing.JTextField txtModelo;
-	    private javax.swing.JTextField txtEstado;
+	    private javax.swing.JComboBox<String> txtEstado;
 	    private javax.swing.JTextField txtPrecio;
 	    private javax.swing.JTextField txtRuta;
-	    private javax.swing.JTextField txtTipoOferta;
+	    private javax.swing.JComboBox<String> txtTipoOferta;
 	    private javax.swing.JTextField txtKilometros;
 	    private javax.swing.JTextField txtCilindrada;
-	    private javax.swing.JTextField txtTipoCombustible;
-	    private javax.swing.JTextField txtTipoCambio;
+	    private javax.swing.JComboBox<String> txtTipoCombustible;
+	    private javax.swing.JComboBox<String> txtTipoCambio;
 	    private javax.swing.JTextField txtAnyoFabricacion;
-	    private javax.swing.JTextField txtIva;
-	    private javax.swing.JTextField txtTipoPago;
+	    private javax.swing.JTextField txtPrecioSinIva;
+	    private javax.swing.JTextField txtMatricula;
 	    private javax.swing.JTextField txtUnidades;
 	    
 	    private JComboBox<String> filtro;
@@ -93,16 +96,12 @@ public class VistaGestorVehiculos extends JFrame {
       txtc.setText("");
       txtMarca.setText("");
       txtModelo.setText("");
-      txtEstado.setText("");
-      txtTipoOferta.setText("");
       txtKilometros.setText("");
       txtCilindrada.setText("");
-      txtTipoCombustible.setText("");
-      txtTipoCambio.setText("");
       txtAnyoFabricacion.setText("");
-      txtIva.setText("");
-      txtTipoPago.setText("");
+      txtPrecioSinIva.setText("");
       txtPrecio.setText("");
+      txtMatricula.setText("");
       txtUnidades.setText("");
       txtRuta.setText("");
       codigo = 0;
@@ -137,23 +136,34 @@ public class VistaGestorVehiculos extends JFrame {
       texto_TipoCombustible = new javax.swing.JLabel();
       texto_TipoCambio = new javax.swing.JLabel();
       texto_AnyoFabricacion = new javax.swing.JLabel();
-      texto_Iva = new javax.swing.JLabel();
-      texto_TipoPago = new javax.swing.JLabel();
+      texto_PrecioSinIva = new javax.swing.JLabel();
+      texto_Matricula = new javax.swing.JLabel();
       texto_Unidades = new javax.swing.JLabel();   
       
       txtRuta = new javax.swing.JTextField();
       txtMarca = new javax.swing.JTextField();
       txtPrecio = new javax.swing.JTextField();
       txtModelo = new javax.swing.JTextField();
-      txtEstado = new javax.swing.JTextField();
-      txtTipoOferta = new javax.swing.JTextField();
+      txtEstado = new javax.swing.JComboBox<String>();
+      txtEstado.addItem("Nuevo");
+      txtEstado.addItem("Seminuevo");
+      txtTipoOferta = new javax.swing.JComboBox<String>();
+      txtTipoOferta.addItem("Venta");
+      txtTipoOferta.addItem("Alquiler");
       txtKilometros = new javax.swing.JTextField();
       txtCilindrada = new javax.swing.JTextField();
-      txtTipoCombustible = new javax.swing.JTextField();
-      txtTipoCambio = new javax.swing.JTextField();
+      txtTipoCombustible = new javax.swing.JComboBox<String>();
+      txtTipoCombustible.addItem("Gasolina");
+      txtTipoCombustible.addItem("Diésel");
+      txtTipoCombustible.addItem("GLP");
+      txtTipoCombustible.addItem("Eléctrico");
+      txtTipoCombustible.addItem("Híbrido");
+      txtTipoCambio = new javax.swing.JComboBox<String>();
+      txtTipoCambio.addItem("Manual");
+      txtTipoCambio.addItem("Automático");
       txtAnyoFabricacion = new javax.swing.JTextField();
-      txtIva = new javax.swing.JTextField();
-      txtTipoPago = new javax.swing.JTextField();
+      txtPrecioSinIva = new javax.swing.JTextField();
+      txtMatricula = new javax.swing.JTextField();
       txtUnidades = new javax.swing.JTextField();
       txtc = new javax.swing.JTextField();
       
@@ -170,8 +180,13 @@ public class VistaGestorVehiculos extends JFrame {
       filtro.addItem("AnyoFabricacion");
       filtro.addItem("unidades");
       
-      
-      
+      calcular = new javax.swing.JButton();
+      calcular.setText("QUITAR IVA");
+      calcular.addActionListener(new ActionListener() {
+    	 public void actionPerformed(ActionEvent evt) {
+    		 BtnCalcActionPerformed(evt);
+    	 } 
+      });
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
       setTitle("Gestor de vehiculos");
 
@@ -183,7 +198,7 @@ public class VistaGestorVehiculos extends JFrame {
               {null, null, null, null}
           },
           new String [] {
-              "ID Vehiculo", "Marca", "Modelo", "Estado", "Tipo Oferta", "Precio", "Kilometros", "Cilindrada", "Combustible", "Cambio", "Año", "Iva", "Unidades", "Imagen"
+              "ID Vehiculo", "Marca", "Modelo", "Estado", "Tipo Oferta", "Precio", "Kilometros", "Cilindrada", "Combustible", "Cambio", "Año", "PrecioSinIva", "Matricula","Unidades", "Imagen"
           }
       ));
       tabla.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -306,7 +321,9 @@ public class VistaGestorVehiculos extends JFrame {
       
       texto_AnyoFabricacion.setText("Año de Fabricación:");
       
-      texto_Iva.setText("Iva:");
+      texto_PrecioSinIva.setText("Precio sin Iva:");
+      
+      texto_Matricula.setText("Matricula:");
       
       texto_Unidades.setText("Unidades:");
 
@@ -340,7 +357,8 @@ public class VistaGestorVehiculos extends JFrame {
                   		.addComponent(texto_TipoCombustible)
                   		.addComponent(texto_TipoCambio)
                   		.addComponent(texto_AnyoFabricacion)
-                  		.addComponent(texto_Iva)
+                  		.addComponent(texto_PrecioSinIva)
+                  		.addComponent(texto_Matricula)
                   		.addComponent(texto_Unidades)
                           .addComponent(texto_Codigo)
                           
@@ -357,7 +375,10 @@ public class VistaGestorVehiculos extends JFrame {
                           .addComponent(txtTipoCombustible)
                           .addComponent(txtTipoCambio)
                           .addComponent(txtAnyoFabricacion)
-                          .addComponent(txtIva)
+                          .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        		  .addComponent(txtPrecioSinIva)
+                        		  .addComponent(calcular))
+                          .addComponent(txtMatricula)
                           .addComponent(txtUnidades)
                           .addComponent(txtc, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                           )))
@@ -412,10 +433,17 @@ public class VistaGestorVehiculos extends JFrame {
                       .addComponent(txtAnyoFabricacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                   .addGap(18, 18, 18)
               .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                      .addComponent(texto_Iva)
-                      .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGap(18, 18, 18)
-                  .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                      .addComponent(texto_PrecioSinIva)
+                      .addComponent(txtPrecioSinIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          			  .addComponent(calcular)
+              .addGap(18, 18, 18)
+              
+              .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                      .addComponent(texto_Matricula)
+                      .addComponent(txtMatricula))
+                .addGap(18, 18, 18)
+              
+              .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                           .addComponent(texto_Unidades)
                           .addComponent(txtUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                       .addGap(18, 18, 18)
@@ -459,7 +487,7 @@ public class VistaGestorVehiculos extends JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void BtnExitActionPerformed(java.awt.event.ActionEvent evt) {
-  	VistaPanelEmpleado v = new VistaPanelEmpleado();
+  	VistaPanelEmpleado v = new VistaPanelEmpleado(0);
   	v.setVisible(true);
   	dispose();
   }
@@ -489,20 +517,20 @@ public class VistaGestorVehiculos extends JFrame {
       
       String marca = txtMarca.getText();
       String modelo = txtModelo.getText();
-      String estado = txtEstado.getText();
-      String tipoOferta = txtTipoOferta.getText();
+      String estado = txtEstado.getSelectedItem().toString();
+      String tipoOferta = txtTipoOferta.getSelectedItem().toString();
       double precio = Double.parseDouble(txtPrecio.getText());
       int kilometros = Integer.parseInt(txtKilometros.getText());
       String cilindrada = txtCilindrada.getText();
-      String combustible = txtTipoCombustible.getText();
-      String cambio = txtTipoCambio.getText();
+      String combustible = txtTipoCombustible.getSelectedItem().toString();
+      String cambio = txtTipoCambio.getSelectedItem().toString();
       int anyo = Integer.parseInt(txtAnyoFabricacion.getText());
-      double iva = Double.parseDouble(txtIva.getText());
-      String tipoPago = txtTipoPago.getText();
+      double precioSinIva = Double.parseDouble(txtPrecioSinIva.getText());
+      String matricula = txtMatricula.getText();
       int unidades = Integer.parseInt(txtUnidades.getText());
       File ruta = new File(txtRuta.getText());
       
-      this.agregar(marca, modelo, estado, tipoOferta, precio, kilometros, cilindrada, combustible, cambio, anyo, iva, tipoPago, unidades,ruta);
+      this.agregar(marca, modelo, estado, tipoOferta, precio, kilometros, cilindrada, combustible, cambio, anyo, precioSinIva, matricula,unidades,ruta);
       t.verVehiculos(tabla,filtro.getSelectedItem().toString());
       
   }//GEN-LAST:event_BtnAddActionPerformed
@@ -521,22 +549,45 @@ public class VistaGestorVehiculos extends JFrame {
       String tipoCombustible = ""+tabla.getValueAt(clic, 8);
       String tipoCambio = ""+tabla.getValueAt(clic, 9);
       int AnyoFabricacion = (int)tabla.getValueAt(clic, 10);
-      double iva = (double)tabla.getValueAt(clic, 11);
-      int unidades = (int)tabla.getValueAt(clic, 12);
+      double precioSinIva = (double)tabla.getValueAt(clic, 11);
+      String matricula = ""+tabla.getValueAt(clic, 12);
+      int unidades = (int)tabla.getValueAt(clic, 13);
       
       txtc.setText(String.valueOf(codigo));
       System.out.println(txtc);
       txtMarca.setText(marca);
       txtModelo.setText(modelo);
-      txtEstado.setText(estado);
-      txtTipoOferta.setText(tipoOferta);
+      
+      switch(estado) {
+	      case "Nuevo": txtEstado.setSelectedIndex(0); break;
+	      case "Seminuevo": txtEstado.setSelectedIndex(1); break;
+      }
+      
+      switch(tipoOferta) {
+	      case "Venta": txtTipoOferta.setSelectedIndex(0); break;
+	      case "Alquiler": txtTipoOferta.setSelectedIndex(1); break;
+      }
+
       txtKilometros.setText(String.valueOf(kilometros));
       txtCilindrada.setText(String.valueOf(cilindrada));
       txtPrecio.setText(String.valueOf(precio));
-      txtTipoCombustible.setText(tipoCombustible);
-      txtTipoCambio.setText(tipoCambio);
+ 
+      switch(tipoCombustible) {
+	      case "Gasolina:": txtTipoCombustible.setSelectedIndex(0); break;
+	      case "Diésel": txtTipoCombustible.setSelectedIndex(1); break;
+	      case "GLP": txtTipoCombustible.setSelectedIndex(2); break;
+	      case "Eléctrico": txtTipoCombustible.setSelectedIndex(3); break;
+	      case "Híbrido": txtTipoCombustible.setSelectedIndex(4); break;
+      }
+
+      switch(tipoCambio) {
+	      case "Manual": txtTipoCambio.setSelectedIndex(0); break;
+	      case "Automático": txtTipoCambio.setSelectedIndex(1); break;
+      }
+
       txtAnyoFabricacion.setText(String.valueOf(AnyoFabricacion));
-      txtIva.setText(String.valueOf(iva));
+      txtPrecioSinIva.setText(String.valueOf(precioSinIva));
+      txtMatricula.setText(matricula);
       txtUnidades.setText(String.valueOf(unidades));
       txtRuta.setText("");
       
@@ -546,19 +597,20 @@ public class VistaGestorVehiculos extends JFrame {
       int id = Integer.parseInt(txtc.getText());
       String marca = txtMarca.getText();
       String modelo = txtModelo.getText();
-      String estado = txtEstado.getText();
-      String tipoOferta = txtTipoOferta.getText();
+      String estado = txtEstado.getSelectedItem().toString();
+      String tipoOferta = txtTipoOferta.getSelectedItem().toString();
       double precio = Double.parseDouble(txtPrecio.getText());
       int kilometros = Integer.parseInt(txtKilometros.getText());
       String cilindrada = txtCilindrada.getText();
-      String tipoCombustible = txtTipoCombustible.getText();
-      String tipoCambio = txtTipoCambio.getText();
+      String tipoCombustible = txtTipoCombustible.getSelectedItem().toString();
+      String tipoCambio = txtTipoCambio.getSelectedItem().toString();
       int anyoFabricacion = Integer.parseInt(txtAnyoFabricacion.getText());
-      double iva = Double.parseDouble(txtIva.getText());
+      double precioSinIva = Double.parseDouble(txtPrecioSinIva.getText());
+      String matricula = txtMatricula.getText();
       int unidades = Integer.parseInt(txtUnidades.getText());
       File ruta = new File(txtRuta.getText());
       
-      this.modificar(marca, modelo, estado, tipoOferta, precio, kilometros, cilindrada, tipoCombustible, tipoCambio, anyoFabricacion, iva, unidades, ruta, id);
+      this.modificar(marca, modelo, estado, tipoOferta, precio, kilometros, cilindrada, tipoCombustible, tipoCambio, anyoFabricacion, precioSinIva, matricula, unidades, ruta, id);
       t.verVehiculos(tabla,filtro.getSelectedItem().toString());
       limpiar();
   }//GEN-LAST:event_BtnEditActionPerformed
@@ -573,7 +625,12 @@ public class VistaGestorVehiculos extends JFrame {
       t.verVehiculos(tabla,filtro.getSelectedItem().toString());
   }//GEN-LAST:event_BtnDelActionPerformed
 
-  public void agregar(String marca, String modelo, String estado, String tipoOferta, double precio, int kilometros, String cilindrada, String combustible, String cambio, int anyo, double iva, String tipoPago, int unidades, File ruta){
+  private void BtnCalcActionPerformed(ActionEvent evt) {
+	  double PrecioSinIva = Double.parseDouble(txtPrecio.getText()) - (0.21*Double.parseDouble(txtPrecio.getText()));
+	  txtPrecioSinIva.setText(String.valueOf(PrecioSinIva));
+  }
+  
+  public void agregar(String marca, String modelo, String estado, String tipoOferta, double precio, int kilometros, String cilindrada, String combustible, String cambio, int anyo, double precioSinIva, String matricula, int unidades, File ruta){
       Vehiculo v = new Vehiculo();
       dao = new GestorVehiculos();
      
@@ -587,8 +644,8 @@ public class VistaGestorVehiculos extends JFrame {
       v.setTipoCombustible(combustible);
       v.setTipoCambio(cambio);
       v.setAnyoFabricacion(anyo);
-      v.setIva(iva);
-      v.setTipoPago(null);
+      v.setPrecioSinIva(precioSinIva);
+      v.setMatricula(matricula);
       v.setUnidades(unidades);
       
       try{
@@ -603,7 +660,7 @@ public class VistaGestorVehiculos extends JFrame {
       limpiar();
   }
   
-  public void modificar(String marca, String modelo, String estado, String tipoOferta, double precio, int kilometros, String cilindrada, String combustible, String cambio, int anyo, double iva, int unidades, File ruta, int id){
+  public void modificar(String marca, String modelo, String estado, String tipoOferta, double precio, int kilometros, String cilindrada, String combustible, String cambio, int anyo, double precioSinIva, String matricula, int unidades, File ruta, int id){
       Vehiculo v = new Vehiculo();
       dao = new GestorVehiculos();
       
@@ -618,8 +675,8 @@ public class VistaGestorVehiculos extends JFrame {
       v.setTipoCombustible(combustible);
       v.setTipoCambio(cambio);
       v.setAnyoFabricacion(anyo);
-      v.setIva(iva);
-      v.setTipoPago(null);
+      v.setPrecioSinIva(precioSinIva);
+      v.setMatricula(matricula);
       v.setUnidades(unidades);
       
       try{

@@ -13,8 +13,8 @@ public class Vehiculo {
     String tipoCombustible;
     String tipoCambio;
     int anyoFabricacion;
-    double iva;
-    String tipoPago;
+    double precioSinIva;
+    String matricula;
     int unidades;
     private byte[] foto;
 
@@ -52,11 +52,11 @@ public String getTipoCambio(){
 public int getAnyoFabricacion(){
     return anyoFabricacion;
 }
-public double getIva(){
-    return iva;
+public double getPrecioSinIva(){
+    return precioSinIva;
 }
-public String getTipoPago(){
-    return tipoPago;
+public String getMatricula() {
+	return matricula;
 }
 public byte[] getFoto() {
     return foto;
@@ -97,11 +97,11 @@ public void setTipoCambio(String tipoCambio){
 public void setAnyoFabricacion(int anyoFabricacion){
     this.anyoFabricacion = anyoFabricacion;
 }
-public void setIva(double iva){
-    this.iva = iva;
-} 
-public void setTipoPago(String tipoPago){
-    this.tipoPago = tipoPago;
+public void setPrecioSinIva(double precioSinIva){
+    this.precioSinIva = precioSinIva;
+}
+public void setMatricula(String matricula) {
+	this.matricula = matricula;
 }
 public void setFoto(byte[] foto) {
     this.foto = foto;

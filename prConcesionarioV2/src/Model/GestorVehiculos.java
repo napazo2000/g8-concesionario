@@ -9,20 +9,30 @@ import java.util.ArrayList;
 /*Metodo listar*/
 public class GestorVehiculos{
 
-	  public ArrayList<Vehiculo> verVehiculos(String filtro){
+	  public ArrayList<Vehiculo> verVehiculos(String filtro, String tipoOferta){
 	        ArrayList<Vehiculo> list = new ArrayList<Vehiculo>();
 	        Conectar conec = new Conectar();
 	        String sql;
-	        if(filtro.equals("default")) {
-	        	sql = "SELECT * FROM vehiculo";
-	        }
-	        else {
-	        	sql = "SELECT * FROM vehiculo ORDER BY +" + filtro + "";
+	        if(tipoOferta.equals("all")) {
+	        	if(filtro.equals("default")) {
+		        	sql = "SELECT * FROM vehiculo";
+		        }
+		        else {
+		        	sql = "SELECT * FROM vehiculo ORDER BY " + filtro + "";
+		        }
+	        } else {
+	        	if(filtro.equals("default")) {
+	        		System.out.println("entra aqui");
+		        	sql = "SELECT * FROM vehiculo WHERE tipoOferta = '" + tipoOferta + "'";
+		        }
+		        else {
+		        	sql = "SELECT * FROM vehiculo WHERE tipoOferta = '" + tipoOferta + "' ORDER BY " + filtro + "";
+		        }
 	        }
 	        ResultSet rs = null;
 	        PreparedStatement ps = null;
 	        try{
-	            ps = conec.getConnection().prepareStatement(sql);
+	            ps = conec.getConnection().prepareStatement(sql);	            
 	            rs = ps.executeQuery();
 	            while(rs.next()){
 	                Vehiculo v = new Vehiculo();
@@ -37,8 +47,8 @@ public class GestorVehiculos{
 	                v.setTipoCombustible(rs.getString(9));
 	                v.setTipoCambio(rs.getString(10));
 	                v.setAnyoFabricacion(rs.getInt(11));
-	                v.setIva(rs.getDouble(12));
-	                v.setTipoPago(rs.getString(13));
+	                v.setPrecioSinIva(rs.getDouble(12));
+	                v.setMatricula(rs.getString(13));
 	                v.setUnidades(rs.getInt(14));
 	                v.setFoto(rs.getBytes(15));
 	                list.add(v);
@@ -61,7 +71,7 @@ public class GestorVehiculos{
 	/*Metodo agregar*/
 	    public void addVehiculo(Vehiculo v){
 	        Conectar conec = new Conectar();
-	        String sql = "INSERT INTO vehiculo (idVehiculo, marca, modelo, estado, tipoOferta, kilometros, cilindrada, precio, tipoCombustible, tipoCambio, anyoFabricacion, iva, tipoPago, unidades, foto)\n" +
+	        String sql = "INSERT INTO vehiculo (idVehiculo, marca, modelo, estado, tipoOferta, kilometros, cilindrada, precio, tipoCombustible, tipoCambio, anyoFabricacion, precioSinIva, matricula,unidades, foto)\n" +
 	"VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 	        PreparedStatement ps = null;
 	        try{
@@ -76,8 +86,8 @@ public class GestorVehiculos{
 	            ps.setString(8, v.getTipoCombustible());
 	            ps.setString(9, v.getTipoCambio());
 	            ps.setInt(10, v.getAnyoFabricacion());
-	            ps.setDouble(11, v.getIva());
-	            ps.setString(12, null);
+	            ps.setDouble(11, v.getPrecioSinIva());
+	            ps.setString(12, v.getMatricula());
 	            ps.setInt(13, v.getUnidades());
 	            ps.setBytes(14, v.getFoto());
 	            ps.executeUpdate();
@@ -97,11 +107,11 @@ public class GestorVehiculos{
 	/*Metodo Modificar*/
 	    public void editVehiculo(Vehiculo v){
 	        Conectar conec = new Conectar();
-	        String sql = "UPDATE vehiculo SET marca = ?, modelo = ?, estado = ?, tipoOferta = ?, kilometros = ?, cilindrada = ?, precio = ?, tipoCombustible = ?, tipoCambio = ?, anyoFabricacion = ?, iva = ?, tipoPago = ?, unidades = ?, foto = ?\n" +
+	        String sql = "UPDATE vehiculo SET marca = ?, modelo = ?, estado = ?, tipoOferta = ?, kilometros = ?, cilindrada = ?, precio = ?, tipoCombustible = ?, tipoCambio = ?, anyoFabricacion = ?, precioSinIva = ?, matricula = ?, unidades = ?, foto = ?\n" +
 	"WHERE idVehiculo = ?;";
 	        PreparedStatement ps = null;
 	        try{
-	            ps = conec.getConnection().prepareStatement(sql);
+	        	ps = conec.getConnection().prepareStatement(sql);
 	            ps.setString(1, v.getMarca());
 	            ps.setString(2, v.getModelo());
 	            ps.setString(3, v.getEstado());
@@ -112,8 +122,8 @@ public class GestorVehiculos{
 	            ps.setString(8, v.getTipoCombustible());
 	            ps.setString(9, v.getTipoCambio());
 	            ps.setInt(10, v.getAnyoFabricacion());
-	            ps.setDouble(11, v.getIva());
-	            ps.setString(12, null);
+	            ps.setDouble(11, v.getPrecioSinIva());
+	            ps.setString(12, v.getMatricula());
 	            ps.setInt(13, v.getUnidades());
 	            ps.setBytes(14, v.getFoto());
 	            ps.setInt(15, v.getIdVehiculo());

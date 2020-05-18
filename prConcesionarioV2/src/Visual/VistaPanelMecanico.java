@@ -27,7 +27,10 @@ public class VistaPanelMecanico extends JFrame {
 	private javax.swing.JPanel panel1;
 	private javax.swing.JPanel panel2;
 	
-	public VistaPanelMecanico() {
+	public int idMecanico;
+	
+	public VistaPanelMecanico(int id) {
+		idMecanico = id;
 		initComponents();
 		setExtendedState(MAXIMIZED_BOTH);
 	}
@@ -282,8 +285,7 @@ public class VistaPanelMecanico extends JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            	VistaPanelMecanico v = new VistaPanelMecanico();
-            	v.setVisible(true);
+            	new VistaPanelMecanico(0).setVisible(true);
             }
         });
     } 

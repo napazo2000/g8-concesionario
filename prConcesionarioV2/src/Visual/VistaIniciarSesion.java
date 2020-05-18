@@ -2,14 +2,20 @@ package Visual;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,11 +24,13 @@ import Conexion.Conectar;
 
 public class VistaIniciarSesion extends JFrame {
 	private javax.swing.JLabel title;
+	
 	private javax.swing.JLabel texto_Usuario;
 	private javax.swing.JLabel texto_Password;
 	private javax.swing.JLabel msg;
 	public javax.swing.JTextField txtUsuario;
 	public javax.swing.JPasswordField txtPassword;
+	private javax.swing.JLabel logo;
 	private javax.swing.JPanel panel0;
 	private javax.swing.JPanel panel1;
 	private javax.swing.JPanel panel2;
@@ -43,6 +51,10 @@ public class VistaIniciarSesion extends JFrame {
 		Font negrita = new Font("Arial", Font.BOLD, 30);
 		Font estandar = new Font("Arial", Font.PLAIN, 20);
 		Font italic = new Font("Arial", Font.ITALIC, 20);
+		
+        ImageIcon imagen=new ImageIcon("imagenes"+File.separator+"logo.png");
+        logo = new javax.swing.JLabel(imagen);
+		
 		texto_Usuario = new javax.swing.JLabel();
 		texto_Usuario.setFont(estandar);
 		texto_Password = new javax.swing.JLabel();
@@ -71,6 +83,7 @@ public class VistaIniciarSesion extends JFrame {
 		panel0 = new javax.swing.JPanel();
 		panel1 = new javax.swing.JPanel();
 		panel2 = new javax.swing.JPanel();
+		
 		panel2.setBorder(BorderFactory.createLineBorder(Color.black));
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar sesion");
@@ -79,18 +92,23 @@ public class VistaIniciarSesion extends JFrame {
         panel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+           
             .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(title)
                 .addGap(10, 10, 10)
                 )
+            
+            .addComponent(logo)
         );
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
+                    .addComponent(logo)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(title))
+                        .addComponent(title)
+                        )
                     .addGap(20, 20, 20)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
@@ -162,7 +180,7 @@ public class VistaIniciarSesion extends JFrame {
                     .addContainerGap(5, 10)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     		.addGroup(layout.createSequentialGroup()
-                        		 .addComponent(panel0, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        		 .addComponent(panel0, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         		 .addGroup(layout.createSequentialGroup()
                         		 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         		 .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -178,16 +196,52 @@ public class VistaIniciarSesion extends JFrame {
 	
 	private void BtnLoginActionListener(java.awt.event.ActionEvent evt) {
 		if(ok(txtUsuario.getText(),txtPassword.getText())) {
-			System.out.println("HEYYYYYYY");
 			String rol = rol(txtUsuario.getText(),txtPassword.getText());
 			switch(rol) {
-			case "Cliente": VistaPanelCliente c = new VistaPanelCliente(); c.bienvenido.setText("Bienvenido, " + txtUsuario.getText());c.setVisible(true); dispose(); break;
-			case "Empleado": VistaPanelEmpleado e = new VistaPanelEmpleado(); e.bienvenido.setText("Bienvenido, " + txtUsuario.getText());e.setVisible(true); dispose(); break;
-			case "Mecánico": VistaPanelMecanico m = new VistaPanelMecanico(); m.bienvenido.setText("Bienvenido, " + txtUsuario.getText()); m.setVisible(true); dispose(); break;
+			case "Empleado": 
+				VistaPanelEmpleado e = new VistaPanelEmpleado(pasarId(txtUsuario.getText(),txtPassword.getText())); 
+				e.bienvenido.setText("Bienvenido, " + txtUsuario.getText()); 
+				e.setVisible(true);
+				dispose();
+				break;
+			case "Mecánico": 
+				VistaPanelMecanico m = new VistaPanelMecanico(pasarId(txtUsuario.getText(),txtPassword.getText()));
+				m.bienvenido.setText("Bienvenido, " + txtUsuario.getText());
+				m.setVisible(true);
+				dispose();
+				break;
 			}
 		} else {
 			msg.setText("ERROR: usuario o contraseña incorrrectos");
 		}
+	}
+	
+	public int pasarId(String user, String pass) {
+		int id = 0; 
+		Conectar conec = new Conectar();
+	        String sql = "SELECT idUsuario FROM usuario WHERE correo = ? AND password = ?";
+	        ResultSet rs = null;
+	        PreparedStatement ps = null;
+	        try{
+	            ps = conec.getConnection().prepareStatement(sql);
+	            ps.setString(1, user);
+	            ps.setString(2, pass);
+	            rs = ps.executeQuery();
+	            rs.next();
+	            id = rs.getInt(1);
+	        }catch(SQLException ex1){
+	            System.out.println(ex1.getMessage());
+	        }catch(Exception ex){
+	            System.out.println(ex.getMessage());
+	        }finally{
+	            try{
+	                ps.close();
+	                rs.close();
+	                conec.desconectar();
+	            }
+	            catch(Exception ex){}
+	        }   
+			return id;
 	}
 	
 	private boolean ok(String user, String pass) {
@@ -234,7 +288,6 @@ public class VistaIniciarSesion extends JFrame {
 	        	rs = ps.executeQuery();
 	            rs.next();
 	            rol = rs.getString(1);
-	            System.out.println(rol);
 	        }catch(SQLException ex1){
 	            System.out.println(ex1.getMessage());
 	        }catch(Exception ex){
@@ -282,5 +335,4 @@ public class VistaIniciarSesion extends JFrame {
             }
         });
     }
-	
 }

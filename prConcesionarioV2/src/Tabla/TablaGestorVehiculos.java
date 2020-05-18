@@ -40,17 +40,18 @@ public class TablaGestorVehiculos{
         dt.addColumn("Combustible");
         dt.addColumn("Cambio");
         dt.addColumn("Año");
-        dt.addColumn("Iva");
+        dt.addColumn("Sin Iva");
+        dt.addColumn("Matricula");
         dt.addColumn("Unidades");
         dt.addColumn("Foto");
 
         dao = new GestorVehiculos();
         Model.Vehiculo v = new Model.Vehiculo();
-        ArrayList<Model.Vehiculo> list = dao.verVehiculos(filtro);
+        ArrayList<Model.Vehiculo> list = dao.verVehiculos(filtro, "all");
 
         if(list.size() > 0){
             for(int i=0; i<list.size(); i++){
-                Object fila[] = new Object[14];
+                Object fila[] = new Object[15];
                 v = list.get(i);
                 fila[0] = v.getIdVehiculo();
                 fila[1] = v.getMarca();
@@ -63,8 +64,9 @@ public class TablaGestorVehiculos{
                 fila[8] = v.getTipoCombustible();
                 fila[9] = v.getTipoCambio();
                 fila[10] = v.getAnyoFabricacion();
-                fila[11] = v.getIva();
-                fila[12] = v.getUnidades();
+                fila[11] = v.getPrecioSinIva();
+                fila[12] = v.getMatricula();
+                fila[13] = v.getUnidades();
                 
                 try{
                     byte[] bi = v.getFoto();
@@ -72,10 +74,10 @@ public class TablaGestorVehiculos{
                     InputStream in = new ByteArrayInputStream(bi);
                     image = ImageIO.read(in);
                     ImageIcon imgi = new ImageIcon(image.getScaledInstance(150, 150, 0));
-                    fila[13] = new JLabel(imgi);
+                    fila[14] = new JLabel(imgi);
 
                 }catch(Exception ex){
-                    fila[13] = new JLabel("No imagen");
+                    fila[14] = new JLabel("No imagen");
                 }
                 dt.addRow(fila);
             }

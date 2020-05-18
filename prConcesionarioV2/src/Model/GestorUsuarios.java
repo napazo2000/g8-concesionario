@@ -28,7 +28,7 @@ public class GestorUsuarios{
 	                Usuario u = new Usuario();
 	                u.setIdUsuario(rs.getInt(1));
 	                u.setCorreo(rs.getString(2));
-	                u.setPassword(rs.getInt(3));
+	                u.setPassword(rs.getString(3));
 	                u.setDni(rs.getString(4));
 	                u.setNombre(rs.getString(5));
 	                u.setApellidos(rs.getString(6));
@@ -66,7 +66,7 @@ public class GestorUsuarios{
 	        try{
 	            ps = conec.getConnection().prepareStatement(sql);
 	            ps.setString(1, u.getCorreo());
-	            ps.setInt(2, u.getPassword());
+	            ps.setString(2, u.getPassword());
 	            ps.setString(3, u.getDni());
 	            ps.setString(4, u.getNombre());
 	            ps.setString(5, u.getApellidos());
@@ -101,7 +101,7 @@ public class GestorUsuarios{
 	        try{
 	            ps = conec.getConnection().prepareStatement(sql);
 	            ps.setString(1, u.getCorreo());
-	            ps.setInt(2, u.getPassword());
+	            ps.setString(2, u.getPassword());
 	            ps.setString(3, u.getDni());
 	            ps.setString(4, u.getNombre());
 	            ps.setString(5, u.getApellidos());

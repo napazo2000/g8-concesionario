@@ -6,6 +6,10 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.util.Date;
+
+import com.toedter.calendar.JDateChooser;
 
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -57,7 +61,7 @@ public class VistaGestorUsuarios extends JFrame {
     private javax.swing.JTextField txtRuta;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtApellidos;
-    private javax.swing.JTextField txtFecNac;
+    private com.toedter.calendar.JDateChooser txtFecNac;
     private javax.swing.JTextField txtMovil;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtCodPostal;
@@ -95,7 +99,6 @@ public void limpiar(){
     txtDni.setText("");
     txtNombre.setText("");
     txtApellidos.setText("");
-    txtFecNac.setText("");
     txtMovil.setText("");
     txtDireccion.setText("");
     txtCodPostal.setText("");
@@ -143,7 +146,7 @@ private void initComponents() {
     txtNombre = new javax.swing.JTextField();
     txtDni = new javax.swing.JTextField();
     txtApellidos = new javax.swing.JTextField();
-    txtFecNac = new javax.swing.JTextField();
+    txtFecNac = new com.toedter.calendar.JDateChooser();
     txtMovil = new javax.swing.JTextField();
     txtDireccion = new javax.swing.JTextField();
     txtCodPostal = new javax.swing.JTextField();
@@ -483,8 +486,9 @@ private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     String dni = txtDni.getText();
     String nombre = txtNombre.getText();
     String apellidos = txtApellidos.getText();
-    String fecNac = txtFecNac.getText();
-    int movil = Integer.parseInt(txtMovil.getText());
+    Date date = txtFecNac.getDate();
+	String fecNac = DateFormat.getDateInstance().format(date);
+	int movil = Integer.parseInt(txtMovil.getText());
     String direccion = txtDireccion.getText();
     int codPostal = Integer.parseInt(txtCodPostal.getText());
     String ciudad = txtCiudad.getText();
@@ -521,7 +525,6 @@ private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event
     txtDni.setText(dni);
     txtNombre.setText(nombre);
     txtApellidos.setText(apellidos);
-    txtFecNac.setText(fecNac);
     txtMovil.setText(String.valueOf(movil));
     txtDireccion.setText(direccion);
     txtCodPostal.setText(String.valueOf(codPostal));
@@ -544,8 +547,9 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     String dni = txtDni.getText();
     String nombre = txtNombre.getText();
     String apellidos = txtApellidos.getText();
-    String fecNac = txtFecNac.getText();
-    int movil = Integer.parseInt(txtMovil.getText());
+    Date date = txtFecNac.getDate();
+	String fecNac = DateFormat.getDateInstance().format(date);
+	int movil = Integer.parseInt(txtMovil.getText());
     String direccion = txtDireccion.getText();
     int codPostal = Integer.parseInt(txtCodPostal.getText());
     String ciudad = txtCiudad.getText();
@@ -569,7 +573,7 @@ private void BtnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 }//GEN-LAST:event_BtnDelActionPerformed
 
 private void BtnBackActionPerformed(ActionEvent evt) {
-	VistaPanelEmpleado v = new VistaPanelEmpleado();
+	VistaPanelEmpleado v = new VistaPanelEmpleado(0);
 	v.setVisible(true);
 	dispose();
 }
