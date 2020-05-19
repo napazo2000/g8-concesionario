@@ -15,7 +15,8 @@ CREATE TABLE `vehiculo` (
   `tipoCambio` varchar(20) DEFAULT NULL,
   `anyoFabricacion` int DEFAULT NULL,
   `precioSinIva` double DEFAULT NULL,
-  `unidades` int DEFAULT NULL,
+  `matricula` varchar(15) DEFAULT NULL,
+  `dispo` int DEFAULT NULL,
   `foto` longblob,
   PRIMARY KEY (`idVehiculo`)
 );
