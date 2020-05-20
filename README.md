@@ -7,7 +7,7 @@ JUAN CARLOS DELGADO DE LA TORRE /
 ANTONIO MOLINA BAENA / 
 DIEGO GARCIA MUÑOZ / /
 
-# Objetivos semana del 18/5: :EMOJICODE:
+# Objetivos semana del 18/5: :SHIPIT:
 - [ ] Finalización de las clases (_Operacion, gestorOperacion, Venta, miPefil_) /
 - [ ] Actualización tablas mySql (_Si se producen cambios de ultima hora o bien, no se habian actualizado previamente_)
 - [ ] Inicialización Test / 
