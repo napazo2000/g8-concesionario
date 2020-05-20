@@ -6,7 +6,7 @@ LÁZARO JAVIER ARAGONÉS GUTIÉRREZ /
 JUAN CARLOS DELGADO DE LA TORRE /
 ANTONIO MOLINA BAENA / 
 DIEGO GARCIA MUÑOZ / 
-~~NULL /
+~NULL /
 
 # Objetivos semana del 18/5: :shipit:
 - [ ] Finalización de las clases (_Operacion, gestorOperacion, Venta, miPefil_) 
