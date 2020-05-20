@@ -5,7 +5,8 @@ IGNACIO FERNÁNDEZ CONTRERAS /
 LÁZARO JAVIER ARAGONÉS GUTIÉRREZ /
 JUAN CARLOS DELGADO DE LA TORRE /
 ANTONIO MOLINA BAENA / 
-DIEGO GARCIA MUÑOZ / /
+DIEGO GARCIA MUÑOZ / 
+~~~~NULL~~~~ /
 
 # Objetivos semana del 18/5: :shipit:
 - [ ] Finalización de las clases (_Operacion, gestorOperacion, Venta, miPefil_) 
