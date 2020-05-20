@@ -10,6 +10,7 @@ DIEGO GARCIA MUÑOZ /
 
 # Objetivos semana del 18/5: :shipit:
 - [ ] Finalización de las clases (_~Operacion~, ~gestorOperacion~, Venta, ~miPefil~_) 
+- [ ] Creacion Mecanico
 - [ ] Actualización tablas mySql (_Si se producen cambios de ultima hora o bien, no se habian actualizado previamente_)
 - [ ] Inicialización Test (Creados TestUsuarios, TestVehiculos)
 - [ ] Retocar Interfaz gráfica (_Añadir logo a las paginas principales, toques de color_)
