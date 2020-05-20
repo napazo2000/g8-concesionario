@@ -14,4 +14,4 @@ DIEGO GARCIA MUÑOZ / /
 
 # Objetivos Semana del 25/05: (A revisar tras reunión del 24/05)
 
-#Objetivos Semana del 1/06: (A revisar tras reunión del 31/05)
+# Objetivos Semana del 1/06: (A revisar tras reunión del 31/05)
