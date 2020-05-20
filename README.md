@@ -13,3 +13,5 @@ DIEGO GARCIA MUÑOZ / /
 -Retocar Interfaz gráfica (Añadir logo a las paginas principales, toques de color)
 
 # Objetivos Semana del 25: (A revisar tras reunión 24/05)
+
+#
