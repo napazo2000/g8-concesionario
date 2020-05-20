@@ -9,7 +9,7 @@ DIEGO GARCIA MUÑOZ /
 ~NULL~ /
 
 # Objetivos semana del 18/5: :shipit:
-- [ ] 1.Finalización de las clases (_Operacion, gestorOperacion, Venta, miPefil_) 
+- [ ] 1. Finalización de las clases (_Operacion, gestorOperacion, Venta, miPefil_) 
       -Operacion
       -gestorOperacion
       -venta
