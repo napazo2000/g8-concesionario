@@ -9,3 +9,5 @@ DIEGO GARCIA MUÑOZ
 
 Objetivos semana del 18: 
 -Finalización clase Operacion, gestorOperacion, Venta
+-Inicialización Test
+
