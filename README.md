@@ -12,3 +12,4 @@ Objetivos semana del 18:
 -Inicialización Test / 
 -Retocar Interfaz gráfica (Añadir logo a las paginas principales, toques de color)
 
+Objetivos Semana del 25: (A revisar tras reunión 24/05
