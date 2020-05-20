@@ -118,7 +118,7 @@ public class VistaPanelEmpleado extends JFrame {
 		miPerfil.setText("Mi perfil");
 		miPerfil.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				//miPerfilActionPerformed(evt);
+				miPerfilActionPerformed(evt);
 			}
 		});
 		
@@ -290,6 +290,12 @@ public class VistaPanelEmpleado extends JFrame {
 	
 	private void gestorUsuariosActionPerformed(java.awt.event.ActionEvent evt) {
 		VistaGestorUsuarios v = new VistaGestorUsuarios();
+		v.setVisible(true);
+		dispose();
+	}
+	
+	private void miPerfilActionPerformed(ActionEvent evt) {
+		VistaMiPerfil v = new VistaMiPerfil(idVendedor);
 		v.setVisible(true);
 		dispose();
 	}
