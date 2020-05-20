@@ -8,4 +8,4 @@ ANTONIO MOLINA BAENA
 DIEGO GARCIA MUÑOZ
 
 Objetivos semana del 18: 
--
+-Finalización clase Operacion, gestorOperacion, Venta
