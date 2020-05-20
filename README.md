@@ -8,10 +8,10 @@ ANTONIO MOLINA BAENA /
 DIEGO GARCIA MUÑOZ / /
 
 # Objetivos semana del 18/5: 
--Finalización clase Operacion, gestorOperacion, Venta, miPefil /
--Actualización tablas mySql (Si se producen cambios de ultima hora o bien, no se habian actualizado previamente)
+-Finalización de las clases (_Operacion, gestorOperacion, Venta, miPefil_) /
+-Actualización tablas mySql (_Si se producen cambios de ultima hora o bien, no se habian actualizado previamente_)
 -Inicialización Test / 
--Retocar Interfaz gráfica (Añadir logo a las paginas principales, toques de color)
+-Retocar Interfaz gráfica (_Añadir logo a las paginas principales, toques de color_)
 
 # Objetivos Semana del 25/05: (A revisar tras reunión del 24/05)
 
