@@ -16,7 +16,7 @@ DIEGO GARCIA MUÑOZ /
 - [ ] Retocar Interfaz gráfica (_Añadir logo a las paginas principales, toques de color_)
 - [X] Actualizar Planificacion
 
-# Objetivos Semana del 25/05: (A revisar tras reunión del 24/05)
+# Objetivos Semana del 25/05: :scream_cat:
 - [ ] Finalizar retoques Interfaz gráfica
 - [ ] Finalizar pruebas nivel profundo
 - [ ] Finalizar pruebas nivel superficial
