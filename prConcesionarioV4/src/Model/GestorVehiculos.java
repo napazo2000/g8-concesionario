@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /*Metodo listar*/
 public class GestorVehiculos{
 
-		//Metodo para visualizar los vehiculos
+	//Metodo para visualizar los vehiculos de la clase vehiculo
 	  public ArrayList<Vehiculo> verVehiculos(String filtro, String tipoOferta, String tipoRol){
 		  	//Creamos una lista con los datos de la clase vehiculo
 	        ArrayList<Vehiculo> list = new ArrayList<Vehiculo>();
