@@ -9,12 +9,17 @@ import java.util.ArrayList;
 /*Metodo listar*/
 public class GestorVehiculos{
 
+		//Metodo para visualizar los vehiculos
 	  public ArrayList<Vehiculo> verVehiculos(String filtro, String tipoOferta, String tipoRol){
+		  	//Creamos una lista con los datos de la clase vehiculo
 	        ArrayList<Vehiculo> list = new ArrayList<Vehiculo>();
+	        //Conectamos a la base de datos
 	        Conectar conec = new Conectar();
 	        String sql;
+	        //Si(el tipo de rol es un empleado) entraremos dentro del bucle
 		   if(tipoRol.equals("Empleado")) {
 			   if(tipoOferta.equals("all")) {
+				   //Uso del filtro para ordenar
 		    	if(filtro.equals("default")) {
 		        	sql = "SELECT * FROM vehiculo WHERE dispo = '1'";
 		        }
@@ -33,18 +38,18 @@ public class GestorVehiculos{
 		   } else {
 			   if(tipoOferta.equals("all")) {
 		    	if(filtro.equals("default")) {
-		        	sql = "SELECT * FROM vehiculo";
+		        	sql = "SELECT * FROM vehiculo WHERE dispo = '0'";
 		        }
 		        else {
-		        	sql = "SELECT * FROM vehiculo ORDER BY " + filtro + "";
+		        	sql = "SELECT * FROM vehiculo WHERE dispo = '0' ORDER BY " + filtro + "";
 		        }
 		    } else {
 		    	if(filtro.equals("default")) {
 		    		System.out.println("entra aqui");
-		        	sql = "SELECT * FROM vehiculo WHERE tipoOferta = '" + tipoOferta + "'";
+		        	sql = "SELECT * FROM vehiculo WHERE tipoOferta = '" + tipoOferta + "' AND dispo = '0'";
 		        }
 		        else {
-		        	sql = "SELECT * FROM vehiculo WHERE tipoOferta = '" + tipoOferta + "' ORDER BY " + filtro + "";
+		        	sql = "SELECT * FROM vehiculo WHERE tipoOferta = '" + tipoOferta + "' AND dispo = '0' ORDER BY " + filtro + "";
 			        }
 		        }
 		   }
@@ -54,6 +59,7 @@ public class GestorVehiculos{
 	            ps = conec.getConnection().prepareStatement(sql);	            
 	            rs = ps.executeQuery();
 	            while(rs.next()){
+	            	//inicializamos todos los getter de la clase vehiculo
 	                Vehiculo v = new Vehiculo();
 	                v.setIdVehiculo(rs.getInt(1));
 	                v.setMarca(rs.getString(2));
@@ -70,30 +76,37 @@ public class GestorVehiculos{
 	                v.setMatricula(rs.getString(13));
 	                v.setDisponibilidad(rs.getInt(14));
 	                v.setFoto(rs.getBytes(15));
+	                //los añadimos a la lista
 	                list.add(v);
 	            }
+	            //capturamos la excepciones
 	        }catch(SQLException ex){
 	            System.out.println(ex.getMessage());
 	        }catch(Exception ex){
 	            System.out.println(ex.getMessage());
 	        }finally{
 	            try{
+	            	//cerramos todas las conexiones
 	                ps.close();
 	                rs.close();
 	                conec.desconectar();
 	            }catch(Exception ex){}
 	        }
+	        //devolvemos la lista
 	        return list;
 	    }
 
 
 	/*Metodo agregar*/
 	    public void addVehiculo(Vehiculo v){
+	    	//conectamos a la base de datos
 	        Conectar conec = new Conectar();
+	        //creamos variable para configurar el orden de entrada de los datos
 	        String sql = "INSERT INTO vehiculo (idVehiculo, marca, modelo, estado, tipoOferta, kilometros, cilindrada, precio, tipoCombustible, tipoCambio, anyoFabricacion, precioSinIva, matricula,dispo, foto)\n" +
 	"VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 	        PreparedStatement ps = null;
 	        try{
+	        	//conectamos y usamos los getters para obtener los valores
 	            ps = conec.getConnection().prepareStatement(sql);
 	            ps.setString(1, v.getMarca());
 	            ps.setString(2, v.getModelo());
@@ -125,7 +138,9 @@ public class GestorVehiculos{
 
 	/*Metodo Modificar*/
 	    public void editVehiculo(Vehiculo v){
+	    	//conectamos a la base de datos
 	        Conectar conec = new Conectar();
+	        //variables para predefinir el orden de las variables
 	        String sql = "UPDATE vehiculo SET marca = ?, modelo = ?, estado = ?, tipoOferta = ?, kilometros = ?, cilindrada = ?, precio = ?, tipoCombustible = ?, tipoCambio = ?, anyoFabricacion = ?, precioSinIva = ?, matricula = ?, dispo = ?, foto = ?\n" +
 	"WHERE idVehiculo = ?;";
 	        PreparedStatement ps = null;
@@ -161,11 +176,15 @@ public class GestorVehiculos{
 
 	/*Metodo Eliminar*/
 	    public void delVehiculo(Vehiculo v){
+	    	//Conectamos
 	        Conectar conec = new Conectar();
+	        // predefinimos el mensaje para borrar segun id
 	        String sql = "DELETE FROM vehiculo WHERE idVehiculo = ?;";
 	        PreparedStatement ps = null;
 	        try{
+	        	//preparamos la paremetrizacion de la variable sqp
 	            ps = conec.getConnection().prepareStatement(sql);
+	            //a traves de la id del vehiculo se borraran todos los datos
 	            ps.setInt(1, v.getIdVehiculo());
 	            ps.executeUpdate();
 	        }catch(SQLException ex){
