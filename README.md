@@ -13,11 +13,11 @@ DIEGO GARCIA MUÑOZ /
 - [X] Creacion Mecanico
 - [X] Actualización tablas mySql (_Si se producen cambios de ultima hora o bien, no se habian actualizado previamente_)
 - [X] Inicialización Test (Creados TestUsuarios, TestVehiculos)
-- [ ] Retocar Interfaz gráfica (_Añadir logo a las paginas principales, toques de color_)
+
 - [X] Actualizar Planificacion
 
 # Objetivos Semana del 25/05: :scream_cat:
-- [ ] Finalizar retoques Interfaz gráfica
+- [ ] Retocar Interfaz gráfica (_Añadir logo a las paginas principales, toques de color_)
 - [ ] Finalizar pruebas nivel profundo
 - [ ] Finalizar pruebas nivel superficial
 - [ ] Finalizar documentación
