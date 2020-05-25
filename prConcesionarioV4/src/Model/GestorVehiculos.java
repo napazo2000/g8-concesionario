@@ -38,18 +38,18 @@ public class GestorVehiculos{
 		   } else {
 			   if(tipoOferta.equals("all")) {
 		    	if(filtro.equals("default")) {
-		        	sql = "SELECT * FROM vehiculo WHERE dispo = '0'";
+		        	sql = "SELECT * FROM vehiculo";
 		        }
 		        else {
-		        	sql = "SELECT * FROM vehiculo WHERE dispo = '0' ORDER BY " + filtro + "";
+		        	sql = "SELECT * FROM vehiculo ORDER BY " + filtro + "";
 		        }
 		    } else {
 		    	if(filtro.equals("default")) {
 		    		System.out.println("entra aqui");
-		        	sql = "SELECT * FROM vehiculo WHERE tipoOferta = '" + tipoOferta + "' AND dispo = '0'";
+		        	sql = "SELECT * FROM vehiculo WHERE tipoOferta = '" + tipoOferta + "'";
 		        }
 		        else {
-		        	sql = "SELECT * FROM vehiculo WHERE tipoOferta = '" + tipoOferta + "' AND dispo = '0' ORDER BY " + filtro + "";
+		        	sql = "SELECT * FROM vehiculo WHERE tipoOferta = '" + tipoOferta + "' ORDER BY " + filtro + "";
 			        }
 		        }
 		   }
