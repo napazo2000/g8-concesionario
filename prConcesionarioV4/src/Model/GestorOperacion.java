@@ -8,23 +8,31 @@ import java.util.ArrayList;
 
 /*Metodo listar*/
 public class GestorOperacion{
-
+	//clase para ver operaciones
 	  public ArrayList<Operacion> verOperaciones(String filtro){
+		  //creamos una lista
 	        ArrayList<Operacion> list = new ArrayList<Operacion>();
+		  //conectamos a mySql
 	        Conectar conec = new Conectar();
 	        String sql;
+		  //bucle para las opciones del filtro
 	        if(filtro.equals("default")) {
 	        	sql = "SELECT * FROM operacion";
 	        }
+		  //opciones dentro del filtro
 	        else {
 	        	sql = "SELECT * FROM operacion ORDER BY +" + filtro + "";
 	        }
 	        ResultSet rs = null;
 	        PreparedStatement ps = null;
+		  
 	        try{
+			
 	            ps = conec.getConnection().prepareStatement(sql);
 	            rs = ps.executeQuery();
+			//bucle para el listado de las operaciones, que ira recorriendo cada operación
 	            while(rs.next()){
+			    //parametros de operacion
 	                Operacion u = new Operacion();
 	                u.setIDoperacion(rs.getInt(1));
 	                u.setIdvendedor(rs.getInt(2));
@@ -39,29 +47,37 @@ public class GestorOperacion{
 	                u.setTipooferta(rs.getString(11));
 	                list.add(u);
 	            }
+			//captura de excepciones
 	        }catch(SQLException ex){
 	            System.out.println(ex.getMessage());
 	        }catch(Exception ex){
 	            System.out.println(ex.getMessage());
 	        }finally{
 	            try{
+			   //cerramos las variables abiertas para el recorrido de los bucles
 	                ps.close();
 	                rs.close();
+			    //nos desconectamos de la base de datos
 	                conec.desconectar();
 	            }catch(Exception ex){}
 	        }
+		  //nos devuelve la lista con los parametros
 	        return list;
 	    }
 	  
 
 	/*Metodo agregar*/
 	    public void addOperacion(Operacion u){
+		    //conectamos a la base de datos
 	        Conectar conec = new Conectar();
+		    //variable con orden de parametros
 	        String sql = "INSERT INTO operacion (IDoperacion, Idvendedor, IDvehiculo, IDcliente, Date, Numdias, Importe, Financiacion, Meses, Formapago)\n" +
 	"VALUES (NULL,?,?,?,?,?,?,?,?,?,?);";
 	        PreparedStatement ps = null;
 	        try{
+			//ps conecta a la base de datos y le introduce el orden de parametros
 	            ps = conec.getConnection().prepareStatement(sql);
+			//obtenemos cada variable ordenada según la variable sql y devolvemos el valor de cada parametro
 	            ps.setInt(1, u.getIdvendedor());
 	            ps.setInt(2, u.getIDvehiculo());
 	            ps.setInt(3, u.getIDcliente());
@@ -79,6 +95,7 @@ public class GestorOperacion{
 	            System.out.println("B "+ex.getMessage());
 	        }finally{
 	            try{
+			    //cerramos variables y desconectamos de la base de datos
 	                ps.close();
 	                conec.desconectar();
 	            }catch(Exception ex){}
@@ -88,12 +105,16 @@ public class GestorOperacion{
 
 	/*Metodo Modificar*/
 	    public void editOperacion(Operacion u){
+		    //conectamos a la base de datos
 	        Conectar conec = new Conectar();
+		    //variable con orden de variables
 	        String sql = "UPDATE operacion SET Idvendedor = ?, IDvehiculo = ?, IDcliente = ?, Date = ?, Numdias = ?, Importe = ?, Financiacion = ?, Meses = ?, Formapago = ?, Tipooferta = ?\n" +
 	"WHERE IDoperacion = ?;";
 	        PreparedStatement ps = null;
 	        try{
+			//ps conecta a la base de datos y le introduce el orden de parametros
 	            ps = conec.getConnection().prepareStatement(sql);
+			//obtenemos cada variable ordenada según la variable sql y devolvemos el valor de cada parametro
 	            ps.setInt(1, u.getIdvendedor());
 	            ps.setInt(2, u.getIDvehiculo());
 	            ps.setInt(3, u.getIDcliente());
@@ -112,6 +133,7 @@ public class GestorOperacion{
 	            System.out.println(ex.getMessage());
 	        }finally{
 	            try{
+			    //cerramos variables y desconectamos de la base de datos
 	                ps.close();
 	                conec.desconectar();
 	            }catch(Exception ex){}
@@ -120,12 +142,17 @@ public class GestorOperacion{
 
 	/*Metodo Eliminar*/
 	    public void delOperacion(Operacion u){
+		    //conectamos a la base de datos
 	        Conectar conec = new Conectar();
+		    //varible donde borraremos una operación desde su id
 	        String sql = "DELETE FROM operacion WHERE  IDoperacion = ?;";
 	        PreparedStatement ps = null;
 	        try{
+			//ps conecta a la base de datos y le introduce el orden de parametros
 	            ps = conec.getConnection().prepareStatement(sql);
+			//conseguimos el id de la operacion
 	            ps.setInt(1, u.getIDoperacion());
+			//actualizamos el estado de la operacion, que será eliminarlo
 	            ps.executeUpdate();
 	        }catch(SQLException ex){
 	            System.out.println(ex.getMessage());
@@ -133,6 +160,7 @@ public class GestorOperacion{
 	            System.out.println(ex.getMessage());
 	        }finally{
 	            try{
+			    //cerramos variable y desconectamos de la base de datos
 	                ps.close();
 	                conec.desconectar();
 	            }catch(Exception ex){}
