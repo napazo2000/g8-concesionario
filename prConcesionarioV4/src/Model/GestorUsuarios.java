@@ -8,14 +8,18 @@ import java.util.ArrayList;
 
 /*Metodo listar*/
 public class GestorUsuarios{
-
+	//clase para ver usuarios
 	  public ArrayList<Usuario> verUsuarios(String filtro){
+		  //creamos una lista
 	        ArrayList<Usuario> list = new ArrayList<Usuario>();
+		  		  //conectamos a mySql
 	        Conectar conec = new Conectar();
 	        String sql;
+		  //bucle para las opciones del filtro
 	        if(filtro.equals("default")) {
 	        	sql = "SELECT * FROM usuario WHERE tipoRol = 'Cliente'";
 	        }
+		  //opciones dentro del filtro
 	        else {
 	        	sql = "SELECT * FROM usuario WHERE tipoRol = 'Cliente' ORDER BY +" + filtro + "";
 	        }
@@ -24,7 +28,9 @@ public class GestorUsuarios{
 	        try{
 	            ps = conec.getConnection().prepareStatement(sql);
 	            rs = ps.executeQuery();
+			//bucle para el listado de las operaciones, que ira recorriendo cada operación
 	            while(rs.next()){
+			     //parametros de operacion
 	                Usuario u = new Usuario();
 	                u.setIdUsuario(rs.getInt(1));
 	                u.setCorreo(rs.getString(2));
@@ -42,29 +48,37 @@ public class GestorUsuarios{
 	                u.setFoto(rs.getBytes(14));
 	                list.add(u);
 	            }
+			//captura de excepciones
 	        }catch(SQLException ex){
 	            System.out.println(ex.getMessage());
 	        }catch(Exception ex){
 	            System.out.println(ex.getMessage());
 	        }finally{
 	            try{
+			    //cerramos las variables abiertas para el recorrido de los bucles
 	                ps.close();
 	                rs.close();
+			     //nos desconectamos de la base de datos
 	                conec.desconectar();
 	            }catch(Exception ex){}
 	        }
+		  //nos devuelve la lista con los parametros
 	        return list;
 	    }
 
 
 	/*Metodo agregar*/
 	    public void addUsuario(Usuario u){
+		    //conectamos a la base de datos
 	        Conectar conec = new Conectar();
+		    //variable con orden de parametros
 	        String sql = "INSERT INTO usuario (idUsuario, correo, password, dni, nombre, apellidos, fecNac, movil, direccion, codPostal, ciudad, provincia, tipoRol, foto)\n" +
 	"VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 	        PreparedStatement ps = null;
 	        try{
+			//ps conecta a la base de datos y le introduce el orden de parametros
 	            ps = conec.getConnection().prepareStatement(sql);
+			//obtenemos cada variable ordenada según la variable sql y devolvemos el valor de cada parametro
 	            ps.setString(1, u.getCorreo());
 	            ps.setString(2, u.getPassword());
 	            ps.setString(3, u.getDni());
@@ -85,6 +99,7 @@ public class GestorUsuarios{
 	            System.out.println("B "+ex.getMessage());
 	        }finally{
 	            try{
+			     //cerramos variables y desconectamos de la base de datos
 	                ps.close();
 	                conec.desconectar();
 	            }catch(Exception ex){}
@@ -94,12 +109,16 @@ public class GestorUsuarios{
 
 	/*Metodo Modificar*/
 	    public void editUsuario(Usuario u){
+		      //conectamos a la base de datos
 	        Conectar conec = new Conectar();
+		    //variable con orden de variables
 	        String sql = "UPDATE usuario SET correo = ?, password = ?, dni = ?, nombre = ?, apellidos = ?, fecNac = ?, movil = ?, direccion = ?, codPostal = ?, ciudad = ?, provincia = ?, tipoRol = ?, foto = ?\n" +
 	"WHERE idUsuario = ?;";
 	        PreparedStatement ps = null;
 	        try{
+			//ps conecta a la base de datos y le introduce el orden de parametros
 	            ps = conec.getConnection().prepareStatement(sql);
+			//obtenemos cada variable ordenada según la variable sql y devolvemos el valor de cada parametro
 	            ps.setString(1, u.getCorreo());
 	            ps.setString(2, u.getPassword());
 	            ps.setString(3, u.getDni());
@@ -121,6 +140,7 @@ public class GestorUsuarios{
 	            System.out.println(ex.getMessage());
 	        }finally{
 	            try{
+			     //cerramos variables y desconectamos de la base de datos
 	                ps.close();
 	                conec.desconectar();
 	            }catch(Exception ex){}
@@ -129,12 +149,17 @@ public class GestorUsuarios{
 
 	/*Metodo Eliminar*/
 	    public void delUsuario(Usuario u){
+		      //conectamos a la base de datos
 	        Conectar conec = new Conectar();
+		    //varible donde borraremos una operación desde su id
 	        String sql = "DELETE FROM usuario WHERE idUsuario = ?;";
 	        PreparedStatement ps = null;
 	        try{
+			//ps conecta a la base de datos y le introduce el orden de parametros
 	            ps = conec.getConnection().prepareStatement(sql);
+			//conseguimos el id de la operacion
 	            ps.setInt(1, u.getIdUsuario());
+			//actualizamos el estado de la operacion, que será eliminarlo
 	            ps.executeUpdate();
 	        }catch(SQLException ex){
 	            System.out.println(ex.getMessage());
@@ -142,6 +167,7 @@ public class GestorUsuarios{
 	            System.out.println(ex.getMessage());
 	        }finally{
 	            try{
+			    //cerramos variable y desconectamos de la base de datos
 	                ps.close();
 	                conec.desconectar();
 	            }catch(Exception ex){}
