@@ -1,0 +1,7 @@
+Inicio Test:
+-VX1.0.1(testeo)
+-Implementado PruebaUsuarios, PruebaVehiculos, ambos funcionando correctamente
+
+Proceso para añadir:
+-crear paquete con nombre: Pruebas
+-añadir los dos .java
