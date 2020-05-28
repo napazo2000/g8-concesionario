@@ -1,0 +1,9 @@
+En el paquete Model, disponemos de las clases más básicas:
+-Vehiculo: En esta clase, tendremos todas las varibles necesarias para la creación de un vehículo, con los setter y getters necesarios para las proximas clases
+-Usuario: En esta clase, tendremos todas las varibles necesarias para la creación de un Usuario(mecánico,empleado ó cliente), con los setter y getters necesarios para las proximas clases
+-OperaciónEn esta clase, tendremos todas las varibles necesarias para la creación de una operación, que incluye a los clientes y los vehículos, con los setter y getters necesarios para las proximas clases
+
+En las clases tipo gestor, lo que se realizarán será la conexión con la base de datos(mysql) y la creación de los distintos útiles en cada clase
+-GestoOperación: Las acciones dentro de esta clase serán la de verOperación, agregarOperación, modificarOperación, eliminarOperación (más información de su funcionamiento dentro de cada clase)
+-GestorVehiculo:  Las acciones dentro de esta clase serán la de verVehiculo, agregarVehiculo, modificarVehiculo, eliminarVehiculo (más información de su funcionamiento dentro de cada clase)
+-GestorUsuario:  Las acciones dentro de esta clase serán la de verUsuario, agregarUsuario, modificarUsuario, eliminarUsuario (más información de su funcionamiento dentro de cada clase)
