@@ -13,6 +13,11 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+/*En esta clase, lo que vamos a construir es la tabla correspondiente a la Usuarios, la cual está conectada a la base de datos,
+con las mismas variables que tiene operación, por tanto, en esta clase, vamos a ir añadiendo cada columna con un orden específico,
+que estará en función de lo que se haya configurado previamente. Primero añadiremos cada columna con las varibles, y posteriormente
+haremos un bucle que recorrar toda la tabla, y en cada fila le asocie un valor que obtendremos de los getter de la clase Usuario
+*/
 
 public class TablaGestorUsuarios{
 
@@ -31,14 +36,14 @@ public class TablaGestorUsuarios{
         };
         dt.addColumn("ID Usuario");
         dt.addColumn("Correo");
-        dt.addColumn("Contrase�a");
+        dt.addColumn("Contraseña");
         dt.addColumn("DNI");
         dt.addColumn("Nombre");
         dt.addColumn("Apellidos");
         dt.addColumn("Fecha Nacimiento");
-        dt.addColumn("M�vil");
-        dt.addColumn("Direcci�n");
-        dt.addColumn("C�digo Postal");
+        dt.addColumn("Móvil");
+        dt.addColumn("Dirección");
+        dt.addColumn("Código Postal");
         dt.addColumn("Ciudad");
         dt.addColumn("Provincia");
        dt.addColumn("Imagen");
