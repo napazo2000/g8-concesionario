@@ -13,6 +13,12 @@ import javax.swing.table.DefaultTableModel;
 
 import Model.GestorVehiculos;
 
+/*En esta clase, lo que vamos a construir es la tabla correspondiente a la gestor vehiculo, la cual está conectada a la base de datos,
+con las mismas variables que tiene gestor vehiculo, por tanto, en esta clase, vamos a ir añadiendo cada columna con un orden específico,
+que estará en función de lo que se haya configurado previamente. Primero añadiremos cada columna con las varibles, y posteriormente
+haremos un bucle que recorrar toda la tabla, y en cada fila le asocie un valor que obtendremos de los getter de la clase gestor vehiculo
+*/
+
 public class TablaGestorVehiculosCompraAlquiler{
 
 	   GestorVehiculos dao = null;
@@ -37,7 +43,7 @@ public class TablaGestorVehiculosCompraAlquiler{
 	        dt.addColumn("Cilindrada");
 	        dt.addColumn("Combustible");
 	        dt.addColumn("Cambio");
-	        dt.addColumn("A�o");
+	        dt.addColumn("Año");
 	        dt.addColumn("Matricula");
 	        dt.addColumn("Foto");
 
