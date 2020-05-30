@@ -11,6 +11,12 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+/*En esta clase, lo que vamos a construir es la tabla correspondiente a la operación, la cual está conectada a la base de datos,
+con las mismas variables que tiene operación, por tanto, en esta clase, vamos a ir añadiendo cada columna con un orden específico,
+que estará en función de lo que se haya configurado previamente. Primero añadiremos cada columna con las varibles, y posteriormente
+haremos un bucle que recorrar toda la tabla, y en cada fila le asocie un valor que obtendremos de los getter de la clase operación.
+En este caso al tener que añadir una foto, tenemos que hacer un try-catch, para capturar la excepción
+*/
 
 public class TablaGestorVehiculos{
 
@@ -37,7 +43,7 @@ public class TablaGestorVehiculos{
         dt.addColumn("Cilindrada");
         dt.addColumn("Combustible");
         dt.addColumn("Cambio");
-        dt.addColumn("A�o");
+        dt.addColumn("Año");
         dt.addColumn("Sin Iva");
         dt.addColumn("Matricula");
         dt.addColumn("Foto");
