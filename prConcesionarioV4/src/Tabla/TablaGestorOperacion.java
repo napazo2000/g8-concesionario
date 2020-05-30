@@ -6,6 +6,11 @@ import javax.swing.table.DefaultTableModel;
 
 import Model.GestorOperacion;
 import Model.Operacion;
+/*En esta clase, lo que vamos a construir es la tabla correspondiente a la operación, la cual está conectada a la base de datos,
+con las mismas variables que tiene operación, por tanto, en esta clase, vamos a ir añadiendo cada columna con un orden específico,
+que estará en función de lo que se haya configurado previamente. Primero añadiremos cada columna con las varibles, y posteriormente
+haremos un bucle que recorrar toda la tabla, y en cada fila le asocie un valor que obtendremos de los getter de la clase operación
+*/
 
 public class TablaGestorOperacion {
 	 GestorOperacion dao = null;
@@ -26,9 +31,9 @@ public class TablaGestorOperacion {
 	        dt.addColumn("ID Vehiculo");
 	        dt.addColumn("ID Cliente");
 	        dt.addColumn("Fecha");
-	        dt.addColumn("D�as");
+	        dt.addColumn("Días");
 	        dt.addColumn("Importe");
-	        dt.addColumn("Financiaci�n");
+	        dt.addColumn("Financiación");
 	        dt.addColumn("Meses");
 	        dt.addColumn("Forma de pago");
 	        dt.addColumn("Tipo de oferta");
