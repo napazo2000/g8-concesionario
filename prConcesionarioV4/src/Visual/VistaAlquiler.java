@@ -33,9 +33,11 @@ public class VistaAlquiler extends JFrame {
 	
 	public int idVendedor;
 	public String tipoRol;
-	
+	//creamos un objeto tipo gestoVehiculo
 	GestorVehiculos gestorV;
+	//inicializamos un objeto tipo vehiculo
     Vehiculo v = new Vehiculo();
+	//inicializamos variables de tablas
     TablaGestorVehiculosCompraAlquiler tablaV = new TablaGestorVehiculosCompraAlquiler();
     TablaGestorUsuariosCompraAlquiler tablaC = new TablaGestorUsuariosCompraAlquiler();
     
@@ -43,29 +45,32 @@ public class VistaAlquiler extends JFrame {
     int codigoC = 0;
 	
     public VistaAlquiler(int id, String rol) {
+	    //variables
     	idVendedor = id;
     	tipoRol = rol;
     	System.out.print(idVendedor);
+	    //iniciamos componentes
         initComponents();
+	    //ampliamos tabla a tamaño maximo de pantalla
         setExtendedState(MAXIMIZED_BOTH);
-        
+        //a traves de las tablas creadas anteriormente, utilizamos metodo de cada clase, ver vehiculo y ver usuarios
        tablaV.verVehiculos(tablaVehiculos, "default","Alquiler");
        tablaC.verUsuarios(tablaClientes, "default");
     }
 
     private void initComponents() {
-
+	//tipografia
     	Font negrita = new Font("Calibri", Font.BOLD, 30);
     	
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ASISTENTE DE ALQUILER");
-        
+        //datos visuales
         title = new javax.swing.JLabel();        
         title.setText("  Asistente de alquiler");
         title.setFont(negrita);
         
         texto_Vehiculo = new javax.swing.JLabel();
-        texto_Vehiculo.setText("Veh�culo seleccionado:");
+        texto_Vehiculo.setText("Vehículo seleccionado:");
         
         texto_Cliente = new javax.swing.JLabel();
         texto_Cliente.setText("Cliente seleccionado:");
@@ -82,16 +87,18 @@ public class VistaAlquiler extends JFrame {
                 {null, null, null, null},
                 {null, null, null, null}
             },
+		//variable con orden de datos de vehiculo
             new String [] {
-                "ID Vehiculo", "Marca", "Modelo", "Estado", "Precio", "Kilometros", "Cilindrada", "Combustible", "Cambio", "A�o", "PrecioSinIva","Matricula", "Unidades", "Imagen"
+                "ID Vehiculo", "Marca", "Modelo", "Estado", "Precio", "Kilometros", "Cilindrada", "Combustible", "Cambio", "Año", "PrecioSinIva","Matricula", "Unidades", "Imagen"
             }
         ));
+	    //para que funcionen los botones
         tablaVehiculos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaVehiculosMouseClicked(evt);
             }
         });
-        
+        //paneles visuales
         jScrollPane1.setViewportView(tablaVehiculos);
    
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -103,8 +110,9 @@ public class VistaAlquiler extends JFrame {
                     {null, null, null, null},
                     {null, null, null, null}
                 },
+		//variable con datos de usuario
                 new String [] {
-                    "ID Usuario", "Correo", "Password", "DNI", "Nombre", "Apellidos", "Fecha de Nacimiento", "M�vil", "Direcci�n", "C�digo postal", "Ciudad", "Provincia", "Tipo de Rol", "Imagen"
+                    "ID Usuario", "Correo", "Password", "DNI", "Nombre", "Apellidos", "Fecha de Nacimiento", "Móvil", "Dirección", "Código postal", "Ciudad", "Provincia", "Tipo de Rol", "Imagen"
                 }
             ));
             tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,14 +122,14 @@ public class VistaAlquiler extends JFrame {
             });
             jScrollPane2.setViewportView(tablaClientes);
             
-            
+            //boton atrás
             BtnBack = new javax.swing.JButton();
-            BtnBack.setText("Atr�s");
+            BtnBack.setText("Atrás");
             BtnBack.addActionListener(new java.awt.event.ActionListener() {
             	public void actionPerformed(ActionEvent evt) {
 					BtnBackActionPerformed(evt);}
             });
-            
+            //botón siguiente
             BtnSig = new javax.swing.JButton();
             BtnSig.setText("Siguiente");
             BtnSig.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +137,7 @@ public class VistaAlquiler extends JFrame {
 					BtnSigActionPerformed(evt);
 				}
             });
-        
+        	//parametros para filtrar por vehiculo
             filtroV = new javax.swing.JComboBox<String>();
             filtroV.addItem("default");
             filtroV.addItem("marca");
@@ -144,7 +152,7 @@ public class VistaAlquiler extends JFrame {
             filtroV.addItem("matricula");
             filtroV.addItem("unidades");
             
-            
+            //botón del filtro
             BtnFiltroV = new javax.swing.JButton();
             BtnFiltroV.setText("Filtrar vehiculo");
             BtnFiltroV.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +160,7 @@ public class VistaAlquiler extends JFrame {
             		BtnFiltroVActionPerformed(evt);
 				}
             });
-            
+            //filtrar por usuario
             filtroC = new javax.swing.JComboBox<String>();
             filtroC.addItem("default");
             filtroC.addItem("correo");
@@ -174,7 +182,8 @@ public class VistaAlquiler extends JFrame {
 					BtnFiltroCActionPerformed(evt);	
 				}
             });
-            
+	    //panel horizontal
+            //ajustes de los botones, añadiendo los datos del vehiculo y los botones correspondientes
             botonera = new javax.swing.JPanel();
             javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(botonera);
             botonera.setLayout(jPanel1Layout);
@@ -204,6 +213,8 @@ public class VistaAlquiler extends JFrame {
                     .addGap(10, 10, 10)
                     )
             );
+	    //panel vertical
+	    //panel donde se alojan los componentes del filtro y los botones
             jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -251,7 +262,7 @@ public class VistaAlquiler extends JFrame {
 
         pack(); 
     }
-
+	//seleecion del vehiculo al hacer click encima
     private void tablaVehiculosMouseClicked(MouseEvent evt) {
     	 int clic = tablaVehiculos.rowAtPoint(evt.getPoint());
        
@@ -265,7 +276,7 @@ public class VistaAlquiler extends JFrame {
         codigoC = (int)tablaClientes.getValueAt(clic, 0);
         txtCodigoC.setText(String.valueOf(codigoC));
    }
-    
+    //boton volver
     private void BtnBackActionPerformed(ActionEvent evt) {
     	VistaPanelEmpleado e = new VistaPanelEmpleado(idVendedor,tipoRol); 
 		String n = VistaIniciarSesion.ponerNombre(idVendedor);
@@ -273,16 +284,19 @@ public class VistaAlquiler extends JFrame {
 		e.setVisible(true);
 		dispose();
 	  }
-    
+    //boton filtro vehiculo
     private void BtnFiltroVActionPerformed(ActionEvent evt) {
+	    //utiliza la variable tablaV para ver los vehiculos, introduciendo los parametros correspondientes
     	tablaV.verVehiculos(tablaVehiculos,filtroV.getSelectedItem().toString(), "Alquiler");
     }
-    
+    //boton filtro usuario
     private void BtnFiltroCActionPerformed(ActionEvent evt) {
+	     //utiliza la variable tablaC para ver los usuarios, introduciendo los parametros correspondientes
     	tablaC.verUsuarios(tablaClientes,filtroC.getSelectedItem().toString()); 	
     }
-    
+    //boton siguiente
     private void BtnSigActionPerformed(ActionEvent evt) {
+	   //varible tipo vistaAlquiler y lo inicializa con parametros
     	VistaAlquiler2 v = new VistaAlquiler2(codigoV,codigoC, idVendedor, tipoRol);
     	v.setVisible(true);
     	dispose();
