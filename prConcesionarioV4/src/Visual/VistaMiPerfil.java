@@ -32,6 +32,7 @@ import javax.swing.JFileChooser;
 
 @SuppressWarnings("serial")
 public class VistaMiPerfil extends JFrame {
+	//variables
 		private java.awt.Button BtnBack;
 	    private java.awt.Button BtnSave;
 	    private javax.swing.JLabel title;
@@ -67,20 +68,22 @@ public class VistaMiPerfil extends JFrame {
 	    public int idVendedor;
 	    public String tipoRol;
 	    private JButton BtnFoto;
-	    
+	    //objeto tipo gestorusuarios
 	    GestorUsuarios gu;
    
     public VistaMiPerfil(int id, String rol) {
       	idVendedor = id;
       	tipoRol = rol;
+	    //inicia componentes
         initComponents();
+	    //escala la ventana al tamaño maximo de la pantalla
         setExtendedState(MAXIMIZED_BOTH);
     }
 
  private void initComponents() {
-
+	//tipografía
     	Font negrita = new Font("Arial", Font.BOLD, 30);
-    	
+    	//datos de los paneles
     	ruta = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -123,10 +126,10 @@ public class VistaMiPerfil extends JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 34, Short.MAX_VALUE)
         );
-
+	//datos del usuario
         texto_correo.setText("Correo:");
 
-        texto_password.setText("Contrase�a:");
+        texto_password.setText("Contraseña:");
 
         texto_dni.setText("DNI:");
 
@@ -136,39 +139,39 @@ public class VistaMiPerfil extends JFrame {
 
         texto_fecNac.setText("Fecha de nacimiento:");
 
-        texto_movil.setText("M�vil:");
+        texto_movil.setText("Móvil:");
 
-        texto_direccion.setText("Direcci�n:");
+        texto_direccion.setText("Dirección:");
 
-        texto_codPostal.setText("C�digo postal:");
+        texto_codPostal.setText("Código postal:");
 
         texto_ciudad.setText("Ciudad:");
 
         texto_provincia.setText("Provincia:");
         
         logo = new javax.swing.JLabel();
-
-        BtnBack.setLabel("Atr�s");
+	//botón para volver al panel principal
+        BtnBack.setLabel("Atrás");
         BtnBack.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evt) {
         		BtnBackActionPerformed(evt);
         	}
         });
-        
+        //botón para guardar modificaciones
         BtnSave.setLabel("Guardar cambios");
         BtnSave.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evt) {
         		BtnSaveActionPerformed(evt);
         	}
         });
-        
+        //botón para modificar la foto
         BtnFoto = new JButton("Cambiar imagen");
         BtnFoto.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent evt) {
         		BtnFotoActionPerformed(evt);        
         	}
         });
-
+	//paneles donde se encuentran los datos 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2Layout.setHorizontalGroup(
         	jPanel2Layout.createParallelGroup(Alignment.LEADING)
@@ -274,10 +277,10 @@ public class VistaMiPerfil extends JFrame {
         		.addContainerGap(10, Short.MAX_VALUE)
         ));
         jPanel2.setLayout(jPanel2Layout);
-
+	//titulo mostrando que son los datos personales
         title.setText("Datos personales:");
         title.setFont(negrita);
-        
+        //rellenamos los datos a través del id 
         rellenarDatos(idVendedor);
         
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -319,9 +322,10 @@ public class VistaMiPerfil extends JFrame {
         pack();
     }
 
-   
+   //acción del botón volver
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {                                        
     	String n;
+	    //Depende de si es empleado o mecánico volverá a una vista distinta
     	switch(tipoRol) {
 		case "Empleado": 
 			VistaPanelEmpleado e = new VistaPanelEmpleado(idVendedor,tipoRol); 
@@ -330,7 +334,7 @@ public class VistaMiPerfil extends JFrame {
 			e.setVisible(true);
 			dispose();
 			break;
-		case "Mec�nico": 
+		case "Mecánico": 
 			VistaPanelMecanico m = new VistaPanelMecanico(idVendedor,tipoRol);
 			n = VistaIniciarSesion.ponerNombre(idVendedor);
 			m.bienvenido.setText("Bienvenido, " + n);
@@ -339,13 +343,16 @@ public class VistaMiPerfil extends JFrame {
 			break;
 		}
     }
-
+	//rellenar datos, a través de un id 
     private void rellenarDatos(int id) {
+	    //conectamos a la base de datos
     	Conectar conec = new Conectar();
+	    //variable para el id
         String sql = "SELECT * FROM usuario WHERE idUsuario = ?";
         ResultSet rs = null;
         PreparedStatement ps = null;
         try{
+		//una vez conectado, a través de la id, nos devolverá todos los datos
             ps = conec.getConnection().prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();
@@ -387,7 +394,7 @@ public class VistaMiPerfil extends JFrame {
             catch(Exception ex){}
         }  
     }
-    
+    //botón para añadir la foto
     private void BtnFotoActionPerformed(ActionEvent evt) {
     	JFileChooser j = new JFileChooser();
         FileNameExtensionFilter fil = new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif");
@@ -399,18 +406,18 @@ public class VistaMiPerfil extends JFrame {
             ruta.setText(route);
         }
     }
-    
+    //botón para guardar
     private void BtnSaveActionPerformed(ActionEvent evt) {
         Date date = txtFecNac.getDate();
     	String fecNac = DateFormat.getDateInstance().format(date);
     	File route = new File(ruta.getText());
     	modificar(txtCorreo.getText(), txtPassword.getText(), txtDni.getText(), txtNombre.getText(), txtApellidos.getText(), fecNac, Integer.parseInt(txtMovil.getText()), txtDireccion.getText(), Integer.parseInt(txtCodPostal.getText()), txtCiudad.getText(), txtProvincia.getText(), tipoRol, route);
     }
-    
+    //modificar los datos 
     public void modificar(String correo, String password, String dni, String nombre, String apellidos, String fecNac, int movil, String direccion, int codPostal, String ciudad, String provincia,String tipoRol, File ruta){
     	Usuario u = new Usuario();
         gu = new GestorUsuarios();
-        
+        //se modifican y se guardan en las variables que se introducen
         u.setIdUsuario(idVendedor);
         u.setCorreo(correo);
         u.setPassword(password);
