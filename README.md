@@ -22,7 +22,7 @@ DIEGO GARCIA MUÑOZ /
 - [ ] Finalizar pruebas nivel superficial
 - [ ] Finalizar documentación
 
-# Objetivos Semana del 1/06: (A revisar tras reunión del 31/05) :runner:
+# Objetivos Semana del 1/06:  :runner:
 - Continuación semana del 25/05
 - [ ] Retocar Interfaz gráfica (_Añadir logo a las paginas principales, toques de color_)
 - [ ] Finalizar pruebas nivel profundo
