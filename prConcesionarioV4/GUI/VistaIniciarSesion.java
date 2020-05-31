@@ -37,7 +37,8 @@ public class VistaIniciarSesion extends JFrame {
 	public VistaIniciarSesion() {
 		getContentPane().setBackground(new Color(224, 255, 255));
 		initComponents();
-		setExtendedState(MAXIMIZED_BOTH);
+		//setExtendedState(MAXIMIZED_BOTH);
+		setSize(1920,1080);
 	}
 	
 	private void initComponents() {
@@ -112,7 +113,7 @@ public class VistaIniciarSesion extends JFrame {
             );
         
         texto_Usuario.setText("Usuario:");
-        texto_Password.setText("ContraseÒa:");
+        texto_Password.setText("Contrase√±a:");
         
         JPanel panel = new JPanel();
         panel.setBackground(new Color(224, 255, 255));
@@ -247,7 +248,7 @@ public class VistaIniciarSesion extends JFrame {
 				e.setVisible(true);
 				dispose();
 				break;
-			case "Mec·nico": 
+			case "Mec√°nico": 
 				VistaPanelMecanico m = new VistaPanelMecanico(pasarId(txtUsuario.getText(),txtPassword.getText()),rol);
 				n = ponerNombre(pasarId(txtUsuario.getText(),txtPassword.getText()));
 				m.bienvenido.setText("Bienvenido, " + n);
@@ -256,7 +257,7 @@ public class VistaIniciarSesion extends JFrame {
 				break;
 			}
 		} else {
-			msg.setText("ERROR: usuario o contraseÒa incorrrectos");
+			msg.setText("ERROR: usuario o contrase√±a incorrrectos");
 		}
 	}
 	
