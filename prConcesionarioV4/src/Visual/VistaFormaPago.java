@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class VistaFormaPago extends JFrame {
+	//variables
 	private javax.swing.JLabel title;
 	private javax.swing.JLabel textoPago;
 	private javax.swing.JComboBox<String> tipoPago;
@@ -45,6 +46,7 @@ public class VistaFormaPago extends JFrame {
 	public String tipoRol;
 	
 	public VistaFormaPago(int codV, int codC, int idV, String d, int numDias, double p, String t, String rol) {
+		//variables
 		idVendedor = idV;
 		idVehiculo = codV;
 		idCliente = codC;
@@ -53,11 +55,14 @@ public class VistaFormaPago extends JFrame {
 		importe = p;
 		tipoOferta = t;
 		tipoRol = rol;
+		//inicializar componentes
 		initComponents();
 	}
 	
 	private void initComponents() {
+		//escalar a tamaño maximo de la pantalla
 		setExtendedState(MAXIMIZED_BOTH);
+		//iniciar variables
 		textoPago = new javax.swing.JLabel();
 		textoPago.setText("Forma de pago:");
 		tipoPago = new javax.swing.JComboBox<String>();
@@ -65,12 +70,12 @@ public class VistaFormaPago extends JFrame {
 		tipoPago.addItem("Tarjeta");
 		tipoPago.addItem("Transferencia");
 		financiacion = new javax.swing.JLabel();
-		financiacion.setText("Financiaci�n:");
+		financiacion.setText("Financiación:");
 		opcion = new javax.swing.JComboBox<String>();
 		opcion.addItem("Si");
 		opcion.addItem("No");
 		periodo = new javax.swing.JLabel();
-		periodo.setText("Financiaci�n en meses:");
+		periodo.setText("Financiación en meses:");
 		txtPeriodo = new javax.swing.JTextField();
 		
 		Font negrita = new Font("Calibri", Font.BOLD, 30);
@@ -78,15 +83,15 @@ public class VistaFormaPago extends JFrame {
 		title = new javax.swing.JLabel();
 		title.setText("ASISTENTE DE PAGO:");
 		title.setFont(negrita);
-	
+	//boton volver
 		BtnBack = new javax.swing.JButton();
-		BtnBack.setText("Atr�s");
+		BtnBack.setText("Atrás");
 		BtnBack.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				BtnBackActionPerformed(evt);
 			}
 		});
-		
+		//boton confirmar
 		BtnSig = new javax.swing.JButton();
 		BtnSig.setText("Confirmar");
 		BtnSig.addActionListener(new java.awt.event.ActionListener() {
@@ -97,8 +102,8 @@ public class VistaFormaPago extends JFrame {
 		
 		panel1 = new javax.swing.JPanel();
 		panel1.setBorder(javax.swing.BorderFactory.createTitledBorder("DATOS DE PAGO"));
-		
-		BtnMenu = new JButton("Men� principal");
+		//boton menu principal
+		BtnMenu = new JButton("Menú principal");
 		BtnMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				BtnMenuActionPerformed(evt);
@@ -106,7 +111,7 @@ public class VistaFormaPago extends JFrame {
 		});
 		
 		result = new JLabel("");
-		
+		//panel horizontal
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(panel1);
 		jPanel1Layout.setHorizontalGroup(
 			jPanel1Layout.createParallelGroup(Alignment.LEADING)
@@ -140,6 +145,7 @@ public class VistaFormaPago extends JFrame {
 							.addComponent(result)
 							.addGap(54))))
 		);
+		//panel vertical
 		jPanel1Layout.setVerticalGroup(
 			jPanel1Layout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(jPanel1Layout.createSequentialGroup()
@@ -197,26 +203,29 @@ public class VistaFormaPago extends JFrame {
 	      setLocationRelativeTo(null);
 	  }
 	
-	
+	//boton volver, vuelve a alquiler o venta, según que operación se esté realizando
 	private void BtnBackActionPerformed(ActionEvent evt) {
 		switch(tipoOferta) {
 			case "Alquiler": VistaAlquiler2 v1 = new VistaAlquiler2(idVehiculo, idCliente, idVendedor, tipoRol); v1.setVisible(true); dispose(); break;
 			case "Venta": VistaVenta2 v2 = new VistaVenta2(idVehiculo, idCliente, idVendedor, tipoRol); v2.setVisible(true); dispose(); break;
 		}
 	}
-	
+	//boton siguiente, registra la operación el la base de datos
 	private void BtnSigActionPerformed(ActionEvent evt) {
 		 insertarOperacion();
-		 result.setText("Operaci�n registrada correctamente");
+		 result.setText("Operación registrada correctamente");
 	}
-	
+	//insertar operacion
 	private void insertarOperacion() {
 		Conectar conec = new Conectar();
+		//orden de variables
         String sql = "INSERT INTO operacion (IDoperacion, Idvendedor, IDvehiculo, IDcliente, Date, Numdias, Importe, Financiacion, Meses, Formapago, Tipooferta)\n" +
 "VALUES (NULL,?,?,?,?,?,?,?,?,?,?);";
         PreparedStatement ps = null;
         try{
+		//conectamos a la bse de datos
             ps = conec.getConnection().prepareStatement(sql);
+		//vamos guardando cada variable por el orden establecido
             ps.setInt(1, idVendedor);
             ps.setInt(2, idVehiculo);
             ps.setInt(3, idCliente);
@@ -243,7 +252,7 @@ public class VistaFormaPago extends JFrame {
             }catch(Exception ex){}
         }
 	}
-	
+	//boton menu, nos devuelve al menu principal
 	private void BtnMenuActionPerformed(ActionEvent evt) {
 		VistaPanelEmpleado e = new VistaPanelEmpleado(idVendedor,tipoRol); 
 		String n = VistaIniciarSesion.ponerNombre(idVendedor);
