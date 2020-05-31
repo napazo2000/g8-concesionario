@@ -14,7 +14,7 @@ import Tabla.TablaGestorOperacion;
 
 @SuppressWarnings("serial")
 public class VistaGestorOperaciones extends JFrame {
-
+	//variables
     private javax.swing.JButton BtnEdit;
     private javax.swing.JButton BtnDel;
     private javax.swing.JButton BtnBack;
@@ -66,14 +66,16 @@ public String tipoRol;
 public VistaGestorOperaciones(int id, String rol) {
 	idVendedor = id;
 	tipoRol = rol;
+	//inicia componentes
     initComponents();
+	//inicializa el filtro en 0(sin seleccion)
     filtro.setSelectedIndex(0);
     
     t.verOperaciones(tabla, filtro.getSelectedItem().toString());
     
     setExtendedState(MAXIMIZED_BOTH);
 }
-
+//metodo limpiar, establece todas las variables vacias
 public void limpiar(){
     txtc.setText("");
     txtIDvendedor.setText("");
@@ -84,7 +86,7 @@ public void limpiar(){
     txtMeses.setText("");
     codigo = 0;
 }
-
+//metodo inicia componentes
 private void initComponents() {
 
     jScrollPane1 = new javax.swing.JScrollPane();
@@ -118,7 +120,7 @@ private void initComponents() {
     txtImporte = new javax.swing.JTextField();
     txtMeses = new javax.swing.JTextField();
     txtc = new javax.swing.JTextField();
-    
+    //a√±adir las distintas opciones del filtro
     filtro = new JComboBox<String>();
     filtro.addItem("default");
     filtro.addItem("IDvendedor");
@@ -131,16 +133,16 @@ private void initComponents() {
     filtro.addItem("Meses");
     filtro.addItem("Formapago");
     filtro.addItem("Tipooferta");
-    
+    //opciones de financiacion
     txtFinanciacion = new javax.swing.JComboBox<String>();
     txtFinanciacion.addItem("Si");
     txtFinanciacion.addItem("No");
-    
+    //opciones de forma de pago
     txtFormaPago = new javax.swing.JComboBox<String>();
     txtFormaPago.addItem("Efectivo");
     txtFormaPago.addItem("Tarjeta");
     txtFormaPago.addItem("Transferencia");
-    
+    //opciones de tipo de pago
     txtTipoOferta = new javax.swing.JComboBox<String>();
     txtTipoOferta.addItem("Venta");
     txtTipoOferta.addItem("Alquiler");
@@ -155,10 +157,12 @@ private void initComponents() {
             {null, null, null, null},
             {null, null, null, null}
         },
+	    //orden de variables
         new String [] {
-            "ID Operacion", "ID Vendedor", "ID Vehiculo", "ID Cliente", "Fecha", "N˙mero de dÌas", "Importe", "FinanciaciÛn", "Meses", "Forma de pago", "Tipo de oferta"
+            "ID Operacion", "ID Vendedor", "ID Vehiculo", "ID Cliente", "Fecha", "N√∫mero de d√≠as", "Importe", "Financiaci√≥n", "Meses", "Forma de pago", "Tipo de oferta"
         }
     ));
+	//boton a√±adir
     tabla.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) {
             tablaMouseClicked(evt);
@@ -167,35 +171,35 @@ private void initComponents() {
     jScrollPane1.setViewportView(tabla);
 
     jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
+	//boton eliminar
     BtnDel.setText("Eliminar");
     BtnDel.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             BtnDelActionPerformed(evt);
         }
     });
-
+	//boton modificar
     BtnEdit.setText("Modificar");
     BtnEdit.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             BtnEditActionPerformed(evt);
         }
     });
-
+	//boton limpiar
     BtnClean.setText("Limpiar");
     BtnClean.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             BtnCleanActionPerformed(evt);
         }
     });
-    
-    BtnBack.setText("Atr·s");
+    //boton atras, para volver al menu principal
+    BtnBack.setText("Atr√°s");
     BtnBack.addActionListener(new java.awt.event.ActionListener() {
     	public void actionPerformed(ActionEvent evt) {
     		BtnBackActionPerformed(evt);
     	}
     });
-    
+    //boton filtrar, para filtrar los vehiculo seg√∫n preferencias
     BtnSearch.setText("Filtrar");
     BtnSearch.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,7 +208,7 @@ private void initComponents() {
     });
     
    
-
+	//paneles 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
@@ -240,8 +244,8 @@ private void initComponents() {
     );
 
     jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-    texto_IDoperacion.setText("ID operaciÛn:");
+	//marca texto para cada opcion
+    texto_IDoperacion.setText("ID operaci√≥n:");
     
     texto_IDvendedor.setText("ID vendedor:");
 
@@ -251,11 +255,11 @@ private void initComponents() {
     
     texto_fecha.setText("Fecha:");
     
-    texto_NumDias.setText("N˙mero de dÌas:");
+    texto_NumDias.setText("N√∫mero de d√≠as:");
     
     texto_Importe.setText("Importe:");
     
-    texto_Financiacion.setText("FinanciaciÛn:");
+    texto_Financiacion.setText("Financiaci√≥n:");
     
     texto_Meses.setText("Meses:");
     
@@ -265,7 +269,7 @@ private void initComponents() {
 
     txtc.setEditable(false);
     txtc.setBackground(new java.awt.Color(204, 204, 255));
-
+	//paneles con opciones de operacion
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
     jPanel2Layout.setHorizontalGroup(
@@ -386,18 +390,18 @@ private void initComponents() {
     pack();
     setLocationRelativeTo(null);
 }
-
+//accion boton limpiar
 private void BtnCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCleanActionPerformed
     limpiar();
 }
-
+//accion boton buscar
 private void BtnSearchActionPerformed(java.awt.event.ActionEvent evt) {
 	t.verOperaciones(tabla,filtro.getSelectedItem().toString());
 }
-
+//accion dentro de la tabla
 private void tablaMouseClicked(java.awt.event.MouseEvent evt) {
     int clic = tabla.rowAtPoint(evt.getPoint());
-    
+    //obtenemos para cada variable su valor
     codigo = (int)tabla.getValueAt(clic, 0);
     int vendedor = (int)tabla.getValueAt(clic, 1);
     int vehiculo = (int)tabla.getValueAt(clic, 2);
@@ -440,7 +444,7 @@ private void tablaMouseClicked(java.awt.event.MouseEvent evt) {
     }
   
 }
-
+//accion boton editar,  mofidica las variables sobre una operacion ya creada
 private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {
     int id = Integer.parseInt(txtc.getText());
     int vendedor = Integer.parseInt(txtIDvendedor.getText());
@@ -459,7 +463,7 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {
     t.verOperaciones(tabla,filtro.getSelectedItem().toString());
     limpiar();
 }
-
+//accion boton eleminar, eliminar la operacion seleccionada
 private void BtnDelActionPerformed(java.awt.event.ActionEvent evt) {
     int id = Integer.parseInt(txtc.getText());
     int a = JOptionPane.showConfirmDialog(null, "Desea eliminar este producto","Mensaje",JOptionPane.OK_CANCEL_OPTION);
@@ -469,7 +473,7 @@ private void BtnDelActionPerformed(java.awt.event.ActionEvent evt) {
     }
     t.verOperaciones(tabla,filtro.getSelectedItem().toString());
 }
-
+//accion boton volver, vuelve al panel del mec√°nico
 private void BtnBackActionPerformed(ActionEvent evt) {
 	VistaPanelEmpleado e = new VistaPanelEmpleado(idVendedor,tipoRol); 
 	String n = VistaIniciarSesion.ponerNombre(idVendedor);
@@ -477,7 +481,7 @@ private void BtnBackActionPerformed(ActionEvent evt) {
 	e.setVisible(true);
 	dispose();
 }
-
+//modifica los valores de las variables
 public void modificar(int idvendedor,int IDvehiculo, int iDcliente, String date, int numdias, double importe, String financiacion, int meses, String formapago, String tipooferta, int id){
     Operacion o = new Operacion();
     gu = new GestorOperacion();
