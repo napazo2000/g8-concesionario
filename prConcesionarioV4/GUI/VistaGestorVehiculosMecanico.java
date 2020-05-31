@@ -47,7 +47,8 @@ public class VistaGestorVehiculosMecanico extends JFrame {
       filtro.setSelectedIndex(0);
       
       t.verVehiculos(tabla, filtro.getSelectedItem().toString(),rol);    
-      setExtendedState(MAXIMIZED_BOTH);
+      //setExtendedState(MAXIMIZED_BOTH);
+	  setSize(1920,1080);
   }
 
 private void initComponents() {
@@ -66,7 +67,7 @@ private void initComponents() {
               {null, null, null, null}
           },
           new String [] {
-              "ID Vehiculo", "Marca", "Modelo", "Estado", "Tipo Oferta", "Precio", "Kilometros", "Cilindrada", "Combustible", "Cambio", "AÒo", "PrecioSinIva", "Matricula", "Imagen"
+              "ID Vehiculo", "Marca", "Modelo", "Estado", "Tipo Oferta", "Precio", "Kilometros", "Cilindrada", "Combustible", "Cambio", "A√±o", "PrecioSinIva", "Matricula", "Imagen"
           }
       ));
       tabla.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -149,7 +150,7 @@ private void initComponents() {
                   BtnExit = new javax.swing.JButton();
                   BtnExit.setFont(new Font("Tahoma", Font.PLAIN, 20));
                   
-                  BtnExit.setText("Atr·s");
+                  BtnExit.setText("Atr√°s");
                   BtnExit.addActionListener(new java.awt.event.ActionListener() {
                   	public void actionPerformed(java.awt.event.ActionEvent evt) {
                   		BtnExitActionPerformed(evt);
