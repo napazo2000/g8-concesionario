@@ -37,7 +37,8 @@ public class VistaPanelEmpleado extends JFrame {
 		idVendedor = value;
 		rol = r;
 		initComponents();
-		setExtendedState(MAXIMIZED_BOTH);
+		//setExtendedState(MAXIMIZED_BOTH);
+		setSize(1920,1080);
 	}
 	
 	public void initComponents() {
@@ -61,14 +62,14 @@ public class VistaPanelEmpleado extends JFrame {
 		gestorUsuarios.setFont(estandar);
 		miPerfil.setFont(estandar);
 		
-		BtnExit.setText("Cerrar sesión");
+		BtnExit.setText("Cerrar sesiÃ³n");
 		BtnExit.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				BtnExitActionPerformed(evt);
 			}
 		});
 		
-		ultimasGestiones.setText("Últimas gestiones");
+		ultimasGestiones.setText("Ãšltimas gestiones");
 		ultimasGestiones.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 					ultimasGestionesActionPerformed(evt);				
@@ -89,7 +90,7 @@ public class VistaPanelEmpleado extends JFrame {
 			}
 		});
 		
-		gestorVehiculos.setText("Gestor de Vehículos");
+		gestorVehiculos.setText("Gestor de VehÃ­culos");
 		gestorVehiculos.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				gestorVehiculosActionPerformed(evt);
