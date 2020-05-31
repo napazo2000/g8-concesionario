@@ -11,7 +11,7 @@ import Tabla.TablaGestorVehiculosCompraAlquiler;
 
 @SuppressWarnings("serial")
 public class VistaVenta extends JFrame {
-
+	//variables
 	private javax.swing.JLabel title;
 	private javax.swing.JLabel texto_Vehiculo;
 	private javax.swing.JTextField txtCodigoV;
@@ -44,15 +44,16 @@ public class VistaVenta extends JFrame {
     	idVendedor = id;
     	tipoRol = rol;
     	System.out.print(idVendedor);
+	    //inicia los componentes
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        
+        //se necesitar谩n variables para vehiculos y usuarios
        tablaV.verVehiculos(tablaVehiculos, "default","Venta");
        tablaC.verUsuarios(tablaClientes, "default");
     }
 
     private void initComponents() {
-
+	//inicia variables
     	Font negrita = new Font("Calibri", Font.BOLD, 30);
     	
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,7 +64,7 @@ public class VistaVenta extends JFrame {
         title.setFont(negrita);
         
         texto_Vehiculo = new javax.swing.JLabel();
-        texto_Vehiculo.setText("Veh韈ulo seleccionado:");
+        texto_Vehiculo.setText("Veh铆culo seleccionado:");
         
         texto_Cliente = new javax.swing.JLabel();
         texto_Cliente.setText("Cliente seleccionado:");
@@ -80,8 +81,9 @@ public class VistaVenta extends JFrame {
                 {null, null, null, null},
                 {null, null, null, null}
             },
+		//orden de variables vehiculo
             new String [] {
-                "ID Vehiculo", "Marca", "Modelo", "Estado", "Tipo Oferta", "Precio", "Kilometros", "Cilindrada", "Combustible", "Cambio", "A駉", "Iva", "Unidades", "Imagen"
+                "ID Vehiculo", "Marca", "Modelo", "Estado", "Tipo Oferta", "Precio", "Kilometros", "Cilindrada", "Combustible", "Cambio", "A帽o", "Iva", "Unidades", "Imagen"
             }
         ));
         tablaVehiculos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -101,10 +103,12 @@ public class VistaVenta extends JFrame {
                     {null, null, null, null},
                     {null, null, null, null}
                 },
+		//orden de variables cliente
                 new String [] {
-                    "ID Usuario", "Correo", "Password", "DNI", "Nombre", "Apellidos", "Fecha de Nacimiento", "M髒il", "Direcci髇", "C骴igo postal", "Ciudad", "Provincia", "Tipo de Rol", "Imagen"
+                    "ID Usuario", "Correo", "Password", "DNI", "Nombre", "Apellidos", "Fecha de Nacimiento", "M贸vil", "Direcci贸n", "C贸digo postal", "Ciudad", "Provincia", "Tipo de Rol", "Imagen"
                 }
             ));
+	    //a帽ade lectura al rat贸n
             tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     tablaClientesMouseClicked(evt);
@@ -112,14 +116,14 @@ public class VistaVenta extends JFrame {
             });
             jScrollPane2.setViewportView(tablaClientes);
             
-            
+            //bot贸n atr谩s
             BtnBack = new javax.swing.JButton();
-            BtnBack.setText("Atr醩");
+            BtnBack.setText("Atr谩s");
             BtnBack.addActionListener(new java.awt.event.ActionListener() {
             	public void actionPerformed(ActionEvent evt) {
 					BtnBackActionPerformed(evt);}
             });
-            
+            //bot贸n siguiente
             BtnSig = new javax.swing.JButton();
             BtnSig.setText("Siguiente");
             BtnSig.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +131,7 @@ public class VistaVenta extends JFrame {
 					BtnSigActionPerformed(evt);
 				}
             });
-        
+        	//a帽ade opciones al filtro veh铆culo
             filtroV = new javax.swing.JComboBox<String>();
             filtroV.addItem("default");
             filtroV.addItem("marca");
@@ -149,7 +153,7 @@ public class VistaVenta extends JFrame {
             		BtnFiltroVActionPerformed(evt);
 				}
             });
-            
+            //a帽ade opciones al filtro cliente
             filtroC = new javax.swing.JComboBox<String>();
             filtroC.addItem("default");
             filtroC.addItem("correo");
@@ -170,7 +174,7 @@ public class VistaVenta extends JFrame {
 					BtnFiltroCActionPerformed(evt);	
 				}
             });
-            
+            //paneles
             botonera = new javax.swing.JPanel();
             javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(botonera);
             botonera.setLayout(jPanel1Layout);
@@ -247,21 +251,21 @@ public class VistaVenta extends JFrame {
 
         pack(); 
     }
-
+//A帽ade lectura a la acci贸n del rat贸n en la tabla vehiculo
     private void tablaVehiculosMouseClicked(MouseEvent evt) {
     	 int clic = tablaVehiculos.rowAtPoint(evt.getPoint());
        
          codigoV = (int)tablaVehiculos.getValueAt(clic, 0);
          txtCodigoV.setText(String.valueOf(codigoV));
     }
-    
+    //A帽ade lectura a la acci贸n del rat贸n en la tabla clientes
     private void tablaClientesMouseClicked(MouseEvent evt) {
    	 int clic = tablaClientes.rowAtPoint(evt.getPoint());
       
         codigoC = (int)tablaClientes.getValueAt(clic, 0);
         txtCodigoC.setText(String.valueOf(codigoC));
    }
-    
+    //acci贸n volver a men煤
     private void BtnBackActionPerformed(ActionEvent evt) {
     	VistaPanelEmpleado e = new VistaPanelEmpleado(idVendedor,tipoRol); 
 		String n = VistaIniciarSesion.ponerNombre(idVendedor);
@@ -269,15 +273,15 @@ public class VistaVenta extends JFrame {
 		e.setVisible(true);
 		dispose();
     }
-    
+    //acci贸n filtro veh铆culo
     private void BtnFiltroVActionPerformed(ActionEvent evt) {
     	tablaV.verVehiculos(tablaVehiculos,filtroV.getSelectedItem().toString(),"Venta");
     }
-    
+    //acci贸n filtro usuario
     private void BtnFiltroCActionPerformed(ActionEvent evt) {
     	tablaC.verUsuarios(tablaClientes,filtroC.getSelectedItem().toString()); 	
     }
-    
+    //bot贸n siguiente
     private void BtnSigActionPerformed(ActionEvent evt) {
     	VistaVenta2 v = new VistaVenta2(codigoV,codigoC, idVendedor, tipoRol);
     	v.setVisible(true);
