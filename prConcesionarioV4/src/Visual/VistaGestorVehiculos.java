@@ -22,7 +22,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 @SuppressWarnings("serial")
 public class VistaGestorVehiculos extends JFrame {
-
+	//variables
 	  private javax.swing.JButton BtnFoto;
 	    private javax.swing.JButton BtnAdd;
 	    private javax.swing.JButton BtnEdit;
@@ -73,7 +73,9 @@ public class VistaGestorVehiculos extends JFrame {
 	    private JComboBox<String> filtro;
   
   GestorVehiculos dao;
+	//variable objeto tipo vehiculo
   Vehiculo vo = new Vehiculo();
+	//variable objeto tipo GestorVehiculo
   TablaGestorVehiculos t = new TablaGestorVehiculos();
   
   int codigo = 0;
@@ -83,7 +85,9 @@ public class VistaGestorVehiculos extends JFrame {
   public VistaGestorVehiculos(int id,String r) {
 	  idVendedor = id;
 	  rol = r;
+	  //inicia componente
       initComponents();
+	  //filtro  sin selecci贸n
       filtro.setSelectedIndex(0);
       
       t.verVehiculos(tabla, filtro.getSelectedItem().toString(),rol);
@@ -91,7 +95,7 @@ public class VistaGestorVehiculos extends JFrame {
       setExtendedState(MAXIMIZED_BOTH);
   }
 
-  
+  //limpia las variables
   public void limpiar(){
       txtc.setText("");
       txtMarca.setText("");
@@ -105,7 +109,7 @@ public class VistaGestorVehiculos extends JFrame {
       txtRuta.setText("");
       codigo = 0;
   }
-  
+  //inicia los componentes
   private void initComponents() {
 
       jScrollPane1 = new javax.swing.JScrollPane();
@@ -151,13 +155,13 @@ public class VistaGestorVehiculos extends JFrame {
       txtCilindrada = new javax.swing.JTextField();
       txtTipoCombustible = new javax.swing.JComboBox<String>();
       txtTipoCombustible.addItem("Gasolina");
-      txtTipoCombustible.addItem("Di閟el");
+      txtTipoCombustible.addItem("Di茅sel");
       txtTipoCombustible.addItem("GLP");
-      txtTipoCombustible.addItem("El閏trico");
-      txtTipoCombustible.addItem("H韇rido");
+      txtTipoCombustible.addItem("El茅ctrico");
+      txtTipoCombustible.addItem("H铆brido");
       txtTipoCambio = new javax.swing.JComboBox<String>();
       txtTipoCambio.addItem("Manual");
-      txtTipoCambio.addItem("Autom醫ico");
+      txtTipoCambio.addItem("Autom谩tico");
       txtAnyoFabricacion = new javax.swing.JTextField();
       txtPrecioSinIva = new javax.swing.JTextField();
       txtMatricula = new javax.swing.JTextField();
@@ -196,10 +200,12 @@ public class VistaGestorVehiculos extends JFrame {
               {null, null, null, null},
               {null, null, null, null}
           },
+	      //orden de las variables
           new String [] {
-              "ID Vehiculo", "Marca", "Modelo", "Estado", "Tipo Oferta", "Precio", "Kilometros", "Cilindrada", "Combustible", "Cambio", "A駉", "PrecioSinIva", "Matricula", "Imagen"
+              "ID Vehiculo", "Marca", "Modelo", "Estado", "Tipo Oferta", "Precio", "Kilometros", "Cilindrada", "Combustible", "Cambio", "A帽o", "PrecioSinIva", "Matricula", "Imagen"
           }
       ));
+	  //Permite la lectura del rat贸n
       tabla.addMouseListener(new java.awt.event.MouseAdapter() {
           public void mouseClicked(java.awt.event.MouseEvent evt) {
               tablaMouseClicked(evt);
@@ -208,7 +214,7 @@ public class VistaGestorVehiculos extends JFrame {
       jScrollPane1.setViewportView(tabla);
 
       jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
+	//bot贸n agregar
       BtnAdd.setText("Agregar");
       BtnAdd.addActionListener(new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,28 +228,28 @@ public class VistaGestorVehiculos extends JFrame {
               BtnDelActionPerformed(evt);
           }
       });
-
+	//bot贸n eliminar
       BtnEdit.setText("Modificar");
       BtnEdit.addActionListener(new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
               BtnEditActionPerformed(evt);
           }
       });
-
+	//bot贸n limpiar
       BtnClean.setText("Limpiar");
       BtnClean.addActionListener(new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
               BtnCleanActionPerformed(evt);
           }
       });
-      
-      BtnExit.setText("Atr醩");
+      //bot贸n atr谩s, vuelve al menu principal
+      BtnExit.setText("Atr谩s");
       BtnExit.addActionListener(new java.awt.event.ActionListener() {
       	public void actionPerformed(java.awt.event.ActionEvent evt) {
       		BtnExitActionPerformed(evt);
       	}
       });
-      
+      //bot贸n buscar
       BtnSearch.setText("Filtrar");
       BtnSearch.addActionListener(new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -252,7 +258,7 @@ public class VistaGestorVehiculos extends JFrame {
       });
       
      
-
+	//paneles
       javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
       jPanel1.setLayout(jPanel1Layout);
       jPanel1Layout.setHorizontalGroup(
@@ -310,7 +316,7 @@ public class VistaGestorVehiculos extends JFrame {
       
       texto_TipoOferta.setText("Tipo Oferta:");
       
-      texto_Kilometros.setText("Kil髆etros");
+      texto_Kilometros.setText("Kil贸metros");
       
       texto_Cilindrada.setText("Cilindrada:");
       
@@ -318,7 +324,7 @@ public class VistaGestorVehiculos extends JFrame {
       
       texto_TipoCambio.setText("Cambio:");
       
-      texto_AnyoFabricacion.setText("A駉 de Fabricaci髇:");
+      texto_AnyoFabricacion.setText("A帽o de Fabricaci贸n:");
       
       texto_PrecioSinIva.setText("Precio sin Iva:");
       
@@ -480,7 +486,7 @@ public class VistaGestorVehiculos extends JFrame {
       pack();
       setLocationRelativeTo(null);
   }
-
+//acci贸n eliminar
   private void BtnExitActionPerformed(java.awt.event.ActionEvent evt) {
 	 	VistaPanelEmpleado e = new VistaPanelEmpleado(idVendedor,rol); 
 		String n = VistaIniciarSesion.ponerNombre(idVendedor);
@@ -488,15 +494,15 @@ public class VistaGestorVehiculos extends JFrame {
 		e.setVisible(true);
 		dispose();
 	}
-  
+  //acci贸n limpiar
   private void BtnCleanActionPerformed(java.awt.event.ActionEvent evt) {
       limpiar();
   }
-  
+  //acci贸n buscar
   private void BtnSearchActionPerformed(java.awt.event.ActionEvent evt) {
   	t.verVehiculos(tabla,filtro.getSelectedItem().toString(),rol);
   }
-  
+  //acci贸n foto
   private void BtnFotoActionPerformed(java.awt.event.ActionEvent evt) {
       JFileChooser j = new JFileChooser();
       FileNameExtensionFilter fil = new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif");
@@ -508,7 +514,7 @@ public class VistaGestorVehiculos extends JFrame {
           txtRuta.setText(ruta);
       }
   }
-
+//acci贸n a帽adir
   private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {
       int disp = 0; 
       String marca = txtMarca.getText();
@@ -532,7 +538,7 @@ public class VistaGestorVehiculos extends JFrame {
       t.verVehiculos(tabla,filtro.getSelectedItem().toString(),rol);
       
   }
-
+//acci贸n lectura click rat贸n
   private void tablaMouseClicked(java.awt.event.MouseEvent evt) {
       int clic = tabla.rowAtPoint(evt.getPoint());
       
@@ -571,15 +577,15 @@ public class VistaGestorVehiculos extends JFrame {
  
       switch(tipoCombustible) {
 	      case "Gasolina:": txtTipoCombustible.setSelectedIndex(0); break;
-	      case "Di閟el": txtTipoCombustible.setSelectedIndex(1); break;
+	      case "Di茅sel": txtTipoCombustible.setSelectedIndex(1); break;
 	      case "GLP": txtTipoCombustible.setSelectedIndex(2); break;
-	      case "El閏trico": txtTipoCombustible.setSelectedIndex(3); break;
-	      case "H韇rido": txtTipoCombustible.setSelectedIndex(4); break;
+	      case "El茅ctrico": txtTipoCombustible.setSelectedIndex(3); break;
+	      case "H铆brido": txtTipoCombustible.setSelectedIndex(4); break;
       }
 
       switch(tipoCambio) {
 	      case "Manual": txtTipoCambio.setSelectedIndex(0); break;
-	      case "Autom醫ico": txtTipoCambio.setSelectedIndex(1); break;
+	      case "Autom谩tico": txtTipoCambio.setSelectedIndex(1); break;
       }
 
       txtAnyoFabricacion.setText(String.valueOf(AnyoFabricacion));
@@ -588,7 +594,7 @@ public class VistaGestorVehiculos extends JFrame {
       txtRuta.setText("");
       
   }
-
+//acci贸n editar
   private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {
       int disp = 0;
 	  int id = Integer.parseInt(txtc.getText());
@@ -613,7 +619,7 @@ public class VistaGestorVehiculos extends JFrame {
       t.verVehiculos(tabla,filtro.getSelectedItem().toString(),rol);
       limpiar();
   }
-
+//acci贸n eliminar
   private void BtnDelActionPerformed(java.awt.event.ActionEvent evt) {
       int id = Integer.parseInt(txtc.getText());
       int a = JOptionPane.showConfirmDialog(null, "Desea eliminar este producto","Mensaje",JOptionPane.OK_CANCEL_OPTION);
@@ -623,12 +629,12 @@ public class VistaGestorVehiculos extends JFrame {
       }
       t.verVehiculos(tabla,filtro.getSelectedItem().toString(),rol);
   }
-
+//bot贸n calcular
   private void BtnCalcActionPerformed(ActionEvent evt) {
 	  double PrecioSinIva = Double.parseDouble(txtPrecio.getText()) - (0.21*Double.parseDouble(txtPrecio.getText()));
 	  txtPrecioSinIva.setText(String.valueOf(PrecioSinIva));
   }
-  
+  //acci贸n agregar veh铆culo
   public void agregar(String marca, String modelo, String estado, String tipoOferta, double precio, int kilometros, String cilindrada, String combustible, String cambio, int anyo, double precioSinIva, String matricula, int disp, File ruta){
       Vehiculo v = new Vehiculo();
       dao = new GestorVehiculos();
@@ -659,7 +665,7 @@ public class VistaGestorVehiculos extends JFrame {
       dao.addVehiculo(v);
       limpiar();
   }
-  
+  //acci贸n modificar veh铆culo ya creado
   public void modificar(String marca, String modelo, String estado, String tipoOferta, double precio, int kilometros, String cilindrada, String combustible, String cambio, int anyo, double precioSinIva, String matricula, int disp, File ruta, int id){
       Vehiculo v = new Vehiculo();
       dao = new GestorVehiculos();
@@ -690,7 +696,7 @@ public class VistaGestorVehiculos extends JFrame {
       }
       dao.editVehiculo(v);
   }
-   
+   //acci贸n eliminar
   public void eliminar(int id){
       Vehiculo v = new Vehiculo();
       dao = new GestorVehiculos();
