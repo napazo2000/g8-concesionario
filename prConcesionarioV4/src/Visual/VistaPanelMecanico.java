@@ -9,8 +9,12 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
 
+//En esta clase, a diferencia del panel de empleado, tendr谩 menos opciones, ya que el mec谩nico solo gestionar谩 los veh铆culo
+//que necesiten revisi贸n
+
 @SuppressWarnings("serial")
 public class VistaPanelMecanico extends JFrame {
+	//variables
 	public javax.swing.JLabel bienvenido;
 	private javax.swing.JLabel title;
 	private javax.swing.JButton gestorVehiculos;
@@ -27,11 +31,13 @@ public class VistaPanelMecanico extends JFrame {
 	public VistaPanelMecanico(int id, String r) {
 		idMecanico = id;
 		rol = r;
+		//inicia componentes
 		initComponents();
 		setExtendedState(MAXIMIZED_BOTH);
 	}
 	
 	public void initComponents() {
+		
 		Font negrita = new Font("Arial", Font.BOLD, 30);
 		Font estandar = new Font("Arial", Font.PLAIN, 22);
 		
@@ -48,14 +54,14 @@ public class VistaPanelMecanico extends JFrame {
 		BtnExit.setFont(estandar);
 		gestorVehiculos.setFont(estandar);
 		
-		BtnExit.setText("Cerrar sesi髇");
+		BtnExit.setText("Cerrar sesi贸n");
 		BtnExit.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				BtnExitActionPerformed(evt);
 			}
 		});
 		
-		gestorVehiculos.setText("Gestor de Veh韈ulos");
+		gestorVehiculos.setText("Gestor de Veh铆culos");
 		gestorVehiculos.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				gestorVehiculosActionPerformed(evt);
@@ -78,7 +84,7 @@ public class VistaPanelMecanico extends JFrame {
         		miPerfilActionPerformed(evt);
         	}
         });	
-        
+        //paneles
         javax.swing.GroupLayout jPanel0Layout = new javax.swing.GroupLayout(panel0);
         jPanel0Layout.setHorizontalGroup(
         	jPanel0Layout.createParallelGroup(Alignment.TRAILING)
@@ -174,18 +180,19 @@ public class VistaPanelMecanico extends JFrame {
             pack();
             setLocationRelativeTo(null);
 	}
-	
+	//acci贸n atr谩s
 	private void BtnExitActionPerformed(java.awt.event.ActionEvent evt) {
 		VistaIniciarSesion v = new VistaIniciarSesion();
 		v.setVisible(true);
 		dispose();
 	}
-	
+	//acci贸n bot贸n gestorVehiculos
 	private void gestorVehiculosActionPerformed(java.awt.event.ActionEvent evy) {
 		VistaGestorVehiculosMecanico v = new VistaGestorVehiculosMecanico(idMecanico, rol);
 		v.setVisible(true);
 		dispose();
 	}
+	//acci贸n bot贸n miPerfil
 	private void miPerfilActionPerformed(ActionEvent evt) {
 		VistaMiPerfil v = new VistaMiPerfil(idMecanico,rol);
 		v.setVisible(true);
