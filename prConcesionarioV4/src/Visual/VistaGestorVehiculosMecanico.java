@@ -12,6 +12,7 @@ import Tabla.TablaGestorVehiculos;
 
 @SuppressWarnings("serial")
 public class VistaGestorVehiculosMecanico extends JFrame {
+	  //variables
 	    private javax.swing.JButton BtnEdit;
 	    private javax.swing.JButton BtnExit;
 	    private javax.swing.JButton BtnSearch;
@@ -36,6 +37,7 @@ public class VistaGestorVehiculosMecanico extends JFrame {
   public VistaGestorVehiculosMecanico(int id,String r) {
 	  idVendedor = id;
 	  rol = r;
+	  //inicia componente y el filtro
       initComponents();
       filtro.setSelectedIndex(0);
       
@@ -44,7 +46,7 @@ public class VistaGestorVehiculosMecanico extends JFrame {
   }
 
 private void initComponents() {
-
+	//inicia todas las variables
       jScrollPane1 = new javax.swing.JScrollPane();
       tabla = new javax.swing.JTable();
       jPanel1 = new javax.swing.JPanel();
@@ -87,9 +89,10 @@ private void initComponents() {
               {null, null, null, null}
           },
           new String [] {
-              "ID Vehiculo", "Marca", "Modelo", "Estado", "Tipo Oferta", "Precio", "Kilometros", "Cilindrada", "Combustible", "Cambio", "A駉", "PrecioSinIva", "Matricula", "Imagen"
+              "ID Vehiculo", "Marca", "Modelo", "Estado", "Tipo Oferta", "Precio", "Kilometros", "Cilindrada", "Combustible", "Cambio", "A帽o", "PrecioSinIva", "Matricula", "Imagen"
           }
       ));
+	//a帽ade acci贸n al boton
       tabla.addMouseListener(new java.awt.event.MouseAdapter() {
           public void mouseClicked(java.awt.event.MouseEvent evt) {
               tablaMouseClicked(evt);
@@ -98,28 +101,28 @@ private void initComponents() {
       jScrollPane1.setViewportView(tabla);
 
       jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
+	//bot贸n modificar
       BtnEdit.setText("Modificar");
       BtnEdit.addActionListener(new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
               BtnEditActionPerformed(evt);
           }
       });
-      
-      BtnExit.setText("Atr醩");
+      //bot贸n atr谩s, al men煤 
+      BtnExit.setText("Atr谩s");
       BtnExit.addActionListener(new java.awt.event.ActionListener() {
       	public void actionPerformed(java.awt.event.ActionEvent evt) {
       		BtnExitActionPerformed(evt);
       	}
       });
-      
+      //bot贸n filtrar
       BtnSearch.setText("Filtrar");
       BtnSearch.addActionListener(new java.awt.event.ActionListener() {
           public void actionPerformed(java.awt.event.ActionEvent evt) {
               BtnSearchActionPerformed(evt);
           }
       });
-      
+      //paneles
       javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
       jPanel1.setLayout(jPanel1Layout);
       jPanel1Layout.setHorizontalGroup(
@@ -224,7 +227,7 @@ private void initComponents() {
       pack();
       setLocationRelativeTo(null);
   }
-
+//acci贸n atr谩s
   private void BtnExitActionPerformed(java.awt.event.ActionEvent evt) {
 	 	VistaPanelMecanico e = new VistaPanelMecanico(idVendedor,rol); 
 		String n = VistaIniciarSesion.ponerNombre(idVendedor);
@@ -233,17 +236,17 @@ private void initComponents() {
 		dispose();
 	}
   
- 
+ //acci贸n buscar
   private void BtnSearchActionPerformed(java.awt.event.ActionEvent evt) {
   	t.verVehiculos(tabla,filtro.getSelectedItem().toString(),rol);
   }
-  
+  //lee la acci贸n del click del rat贸n
   private void tablaMouseClicked(java.awt.event.MouseEvent evt) {
       int clic = tabla.rowAtPoint(evt.getPoint());
       codigo = (int)tabla.getValueAt(clic, 0);
       txtc.setText(String.valueOf(codigo));
   }
-
+//acci贸n editar
   private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {
       int disp = 0;
 	  int id = Integer.parseInt(txtc.getText());
@@ -253,7 +256,7 @@ private void initComponents() {
       this.modificar(disp, id);
       t.verVehiculos(tabla,filtro.getSelectedItem().toString(),rol);
   }
-
+//modifica el estado del veh铆culo
  public void modificar( int disp, int id){
 	  Conectar conec = new Conectar();
       String sql = "UPDATE vehiculo SET dispo = ? WHERE idVehiculo = ?;";
