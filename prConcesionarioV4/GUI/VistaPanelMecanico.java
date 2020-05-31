@@ -32,7 +32,8 @@ public class VistaPanelMecanico extends JFrame {
 		idMecanico = id;
 		rol = r;
 		initComponents();
-		setExtendedState(MAXIMIZED_BOTH);
+		//setExtendedState(MAXIMIZED_BOTH);.
+		setSize(1928,1080);
 	}
 	
 	public void initComponents() {
@@ -44,14 +45,14 @@ public class VistaPanelMecanico extends JFrame {
 		BtnExit.setFont(estandar);
 		gestorVehiculos.setFont(estandar);
 		
-		BtnExit.setText("Cerrar sesión");
+		BtnExit.setText("Cerrar sesiÃ³n");
 		BtnExit.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				BtnExitActionPerformed(evt);
 			}
 		});
 		
-		gestorVehiculos.setText("Gestor de Vehículos");
+		gestorVehiculos.setText("Gestor de VehÃ­culos");
 		gestorVehiculos.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				gestorVehiculosActionPerformed(evt);
