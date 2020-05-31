@@ -16,6 +16,7 @@ import Conexion.Conectar;
 
 @SuppressWarnings("serial")
 public class VistaVenta2 extends JFrame {
+	//variables
 	private javax.swing.JLabel title;
 	
 	private javax.swing.JLabel texto_Vehiculo;
@@ -83,6 +84,8 @@ public class VistaVenta2 extends JFrame {
 	public int idVendedor;
 	public String tipoRol;
 	
+	//segunda ventana de la operaci√≥n, en este caso, para terminar la operaci√≥n
+	
 	public VistaVenta2(int codV, int codC, int id, String rol) {
 		setExtendedState(MAXIMIZED_BOTH);	
 		codigoV = codV;
@@ -94,20 +97,21 @@ public class VistaVenta2 extends JFrame {
 	}
 	
 	private void initComponents() {
+		//inicia las variables
 		textoFecha = new javax.swing.JLabel();
 		textoFecha.setText("Fecha actual:");
 		fecActual = new com.toedter.calendar.JDateChooser();
 		texto_EntregaVehiculo = new javax.swing.JLabel();
-		texto_EntregaVehiculo.setText("Entrega alg˙n vehÌculo:");
+		texto_EntregaVehiculo.setText("Entrega alg√∫n veh√≠culo:");
 		opciones = new javax.swing.JComboBox<String>();
 		opciones.addItem("Si");
 		opciones.addItem("No");
 		txtPrecioOldCar = new javax.swing.JTextField();
-		txtPrecioOldCar.setText("∑∑∑TASACI”N∑∑∑");
+		txtPrecioOldCar.setText("¬∑¬∑¬∑TASACI√ìN¬∑¬∑¬∑");
 		texto_PrecioFinal = new javax.swing.JLabel();
 		texto_PrecioFinal.setText("Precio final:");
 		txtPrecioFinal = new javax.swing.JLabel();
-		txtPrecioFinal.setText("∑∑∑PRECIO FINAL∑∑∑");
+		txtPrecioFinal.setText("¬∑¬∑¬∑PRECIO FINAL¬∑¬∑¬∑");
 		
 		calcular = new javax.swing.JButton();
 		calcular.setText("Calcular importe");
@@ -118,13 +122,13 @@ public class VistaVenta2 extends JFrame {
 		});
 		
 		Font negrita = new Font("Calibri", Font.BOLD, 30);
-		
+		//inicializa las variables
 		title = new javax.swing.JLabel();
 		title.setText("ASISTENTE DE ALQUILER:");
 		title.setFont(negrita);
 		
 		texto_Vehiculo = new javax.swing.JLabel();
-		texto_Vehiculo.setText("DATOS DEL VEHÕCULO");
+		texto_Vehiculo.setText("DATOS DEL VEH√çCULO");
 		texto_Marca = new javax.swing.JLabel();
 		texto_Marca.setText("Marca:");
 		txtMarca = new javax.swing.JLabel();
@@ -138,7 +142,7 @@ public class VistaVenta2 extends JFrame {
 		texto_TipoOferta.setText("Tipo de oferta:");
 		txtTipoOferta = new javax.swing.JLabel();
 		texto_Kilometros = new javax.swing.JLabel();
-		texto_Kilometros.setText("KilÛmetros:");
+		texto_Kilometros.setText("Kil√≥metros:");
 		txtKilometros = new javax.swing.JLabel();
 		texto_Cilindrada = new javax.swing.JLabel();
 		texto_Cilindrada.setText("Cilindrada:");
@@ -153,7 +157,7 @@ public class VistaVenta2 extends JFrame {
 		texto_Cambio.setText("Cambio:");
 		txtCambio = new javax.swing.JLabel();
 		texto_Anyo = new javax.swing.JLabel();
-		texto_Anyo.setText("AÒo de fabricaciÛn:");
+		texto_Anyo.setText("A√±o de fabricaci√≥n:");
 		txtAnyo = new javax.swing.JLabel();
 		
 		fichaVehiculo(codigoV);
@@ -176,13 +180,13 @@ public class VistaVenta2 extends JFrame {
 		texto_FecNac.setText("Fecha de nacimiento:");
 		txtFecNac = new javax.swing.JLabel();
 		texto_Movil = new javax.swing.JLabel();
-		texto_Movil.setText("MÛvil:");
+		texto_Movil.setText("M√≥vil:");
 		txtMovil = new javax.swing.JLabel();
 		texto_Direccion = new javax.swing.JLabel();
-		texto_Direccion.setText("DirecciÛn:");
+		texto_Direccion.setText("Direcci√≥n:");
 		txtDireccion = new javax.swing.JLabel();
 		texto_CodPostal = new javax.swing.JLabel();
-		texto_CodPostal.setText("CÛdigo postal:");
+		texto_CodPostal.setText("C√≥digo postal:");
 		txtCodPostal = new javax.swing.JLabel();
 		texto_Ciudad = new javax.swing.JLabel();
 		texto_Ciudad.setText("Ciudad:");
@@ -192,9 +196,9 @@ public class VistaVenta2 extends JFrame {
 		txtProvincia = new javax.swing.JLabel();
 		
 		fichaCliente(codigoC);
-		
+		//paneles
 		panel1 = new javax.swing.JPanel();
-		panel1.setBorder(javax.swing.BorderFactory.createTitledBorder("DATOS DEL VEHÕCULO"));
+		panel1.setBorder(javax.swing.BorderFactory.createTitledBorder("DATOS DEL VEH√çCULO"));
 		javax.swing.GroupLayout jpanel1Layout = new javax.swing.GroupLayout(panel1);
 	      panel1.setLayout(jpanel1Layout);
 	      jpanel1Layout.setHorizontalGroup(
@@ -365,15 +369,15 @@ public class VistaVenta2 extends JFrame {
 						.addContainerGap())
 			);
 		      panel2.setLayout(jpanel2Layout);
- 
+ 	//bot√≥n volver
 		BtnBack = new javax.swing.JButton();
-		BtnBack.setText("Atr·s");
+		BtnBack.setText("Atr√°s");
 		BtnBack.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				BtnBackActionPerformed(evt);
 			}
 		});
-		
+		//bot√≥n siguiente
 		BtnSig = new javax.swing.JButton();
 		BtnSig.setText("Siguiente");
 		BtnSig.addActionListener(new java.awt.event.ActionListener() {
@@ -498,11 +502,14 @@ public class VistaVenta2 extends JFrame {
 	  }
 	
 	private void fichaVehiculo(int codigoV) {
+		//conecta a base de datos
 		Conectar conec = new Conectar();
+		//variable para seleccionar veh√≠culos seg√∫n su id
         String sql = "SELECT * FROM vehiculo WHERE idVehiculo = '" + codigoV + "'";
         ResultSet rs = null;
         PreparedStatement ps = null;
         try{
+		
             ps = conec.getConnection().prepareStatement(sql);
             rs = ps.executeQuery();
             rs.next();
@@ -531,7 +538,9 @@ public class VistaVenta2 extends JFrame {
 	}
 	
 	private void fichaCliente(int codigoC) {
+		//conecta con la base de datos
 		Conectar conec = new Conectar();
+		//variable para seleccionar veh√≠culos seg√∫n su id
         String sql = "SELECT * FROM usuario WHERE idUsuario = '" + codigoC + "'";
         ResultSet rs = null;
         PreparedStatement ps = null;
