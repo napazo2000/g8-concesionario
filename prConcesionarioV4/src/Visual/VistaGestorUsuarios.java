@@ -18,7 +18,7 @@ import Tabla.TablaGestorUsuarios;
 
 @SuppressWarnings("serial")
 public class VistaGestorUsuarios extends JFrame {
-
+//variables
   	private javax.swing.JButton BtnFoto;
     private javax.swing.JButton BtnAdd;
     private javax.swing.JButton BtnEdit;
@@ -75,6 +75,7 @@ public String tipoRol;
 public VistaGestorUsuarios(int id, String rol) {
 	idVendedor = id;
 	tipoRol = rol;
+	//inicia componentes y establece seleccion base para el filtro
     initComponents();
     filtro.setSelectedIndex(0);
     
@@ -82,7 +83,7 @@ public VistaGestorUsuarios(int id, String rol) {
     
     setExtendedState(MAXIMIZED_BOTH);
 }
-
+//establecer todas las varibles vacias o a 0
 public void limpiar(){
     txtc.setText("");
     txtCorreo.setText("");
@@ -100,7 +101,7 @@ public void limpiar(){
 }
 
 private void initComponents() {
-
+//inicializar todas la variables, tablas, botones, paneles
     jScrollPane1 = new javax.swing.JScrollPane();
     tabla = new javax.swing.JTable();
     jPanel1 = new javax.swing.JPanel();
@@ -166,10 +167,12 @@ private void initComponents() {
             {null, null, null, null},
             {null, null, null, null}
         },
+	    //orden de las variables
         new String [] {
-            "ID Usuario", "Correo", "Password", "DNI", "Nombre", "Apellidos", "Fecha de Nacimiento", "M髒il", "Direcci髇", "C骴igo postal", "Ciudad", "Provincia", "Imagen"
+            "ID Usuario", "Correo", "Password", "DNI", "Nombre", "Apellidos", "Fecha de Nacimiento", "M贸vil", "Direcci贸n", "C贸digo postal", "Ciudad", "Provincia", "Imagen"
         }
     ));
+	//boton para a帽adir 
     tabla.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) {
             tablaMouseClicked(evt);
@@ -185,35 +188,35 @@ private void initComponents() {
             BtnAddActionPerformed(evt);
         }
     });
-
+	//boton para eliminar
     BtnDel.setText("Eliminar");
     BtnDel.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             BtnDelActionPerformed(evt);
         }
     });
-
+	//boton para modificar
     BtnEdit.setText("Modificar");
     BtnEdit.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             BtnEditActionPerformed(evt);
         }
     });
-
+	//boton para limpiar
     BtnClean.setText("Limpiar");
     BtnClean.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             BtnCleanActionPerformed(evt);
         }
     });
-    
-    BtnBack.setText("Atr醩");
+    //boton para volver al menu empleado
+    BtnBack.setText("Atr谩s");
     BtnBack.addActionListener(new java.awt.event.ActionListener() {
     	public void actionPerformed(ActionEvent evt) {
     		BtnBackActionPerformed(evt);
     	}
     });
-    
+    //boton para filtrar seg煤n seleccion
     BtnSearch.setText("Filtrar");
     BtnSearch.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,7 +225,7 @@ private void initComponents() {
     });
     
    
-
+	//paneles
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
@@ -271,10 +274,10 @@ private void initComponents() {
             BtnFotoActionPerformed(evt);
         }
     });
-
+	//texto para la colocaci贸n de las variables
     texto_Correo.setText("Correo:");
 
-    texto_Password.setText("Contrase馻:");
+    texto_Password.setText("Contrase帽a:");
     
     texto_Dni.setText("DNI:");
     
@@ -284,11 +287,11 @@ private void initComponents() {
     
     texto_FecNac.setText("Fecha de Nacimiento:");
     
-    texto_Movil.setText("N鷐ero de m髒il:");
+    texto_Movil.setText("N煤mero de m贸vil:");
     
-    texto_Direccion.setText("Direcci髇:");
+    texto_Direccion.setText("Direcci贸n:");
     
-    texto_CodPostal.setText("C骴igo Postal:");
+    texto_CodPostal.setText("C贸digo Postal:");
     
     texto_Ciudad.setText("Ciudad:");
     
@@ -432,15 +435,15 @@ private void initComponents() {
     pack();
     setLocationRelativeTo(null);
 }
-
+//accion eliminar
 private void BtnCleanActionPerformed(java.awt.event.ActionEvent evt) {
     limpiar();
 }
-
+//accion buscar
 private void BtnSearchActionPerformed(java.awt.event.ActionEvent evt) {
 	t.verUsuarios(tabla,filtro.getSelectedItem().toString());
 }
-
+//accion foto
 private void BtnFotoActionPerformed(java.awt.event.ActionEvent evt) {
     JFileChooser j = new JFileChooser();
     FileNameExtensionFilter fil = new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif");
@@ -452,7 +455,7 @@ private void BtnFotoActionPerformed(java.awt.event.ActionEvent evt) {
         txtRuta.setText(ruta);
     }
 }
-
+//accion boton a帽adir
 private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {   
     String correo = txtCorreo.getText();
     String password = txtPassword.getText();
@@ -473,7 +476,7 @@ private void BtnAddActionPerformed(java.awt.event.ActionEvent evt) {
     t.verUsuarios(tabla,filtro.getSelectedItem().toString());
     
 }
-
+//accion tabla, para la seleccion de los usuarios
 private void tablaMouseClicked(java.awt.event.MouseEvent evt) {
     int clic = tabla.rowAtPoint(evt.getPoint());
     
@@ -504,7 +507,7 @@ private void tablaMouseClicked(java.awt.event.MouseEvent evt) {
     txtRuta.setText("");
     
 }
-
+//accion editar
 private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {
 	int id = Integer.parseInt(txtc.getText());
     String correo = txtCorreo.getText();
@@ -526,7 +529,7 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {
     t.verUsuarios(tabla,filtro.getSelectedItem().toString());
     limpiar();
 }
-
+//accion eliminar 
 private void BtnDelActionPerformed(java.awt.event.ActionEvent evt) {
     int id = Integer.parseInt(txtc.getText());
     int a = JOptionPane.showConfirmDialog(null, "Desea eliminar este cliente","Mensaje",JOptionPane.OK_CANCEL_OPTION);
@@ -536,7 +539,7 @@ private void BtnDelActionPerformed(java.awt.event.ActionEvent evt) {
     }
     t.verUsuarios(tabla,filtro.getSelectedItem().toString());
 }
-
+//accion volver
 private void BtnBackActionPerformed(ActionEvent evt) {
 	VistaPanelEmpleado e = new VistaPanelEmpleado(idVendedor,tipoRol); 
 	String n = VistaIniciarSesion.ponerNombre(idVendedor);
@@ -544,7 +547,7 @@ private void BtnBackActionPerformed(ActionEvent evt) {
 	e.setVisible(true);
 	dispose();
 }
-
+//crea la variable usuario y guarda cada variable dentro de esta
 public void agregar(String correo, String password, String dni, String nombre, String apellidos, String fecNac, int movil, String direccion, int codPostal, String ciudad, String provincia, String tipoRol, File ruta){
     Usuario u = new Usuario();
     gu = new GestorUsuarios();
@@ -574,7 +577,7 @@ public void agregar(String correo, String password, String dni, String nombre, S
     gu.addUsuario(u);
     limpiar();
 }
-
+//modifica un usuario ya creado
 public void modificar(String correo, String password, String dni, String nombre, String apellidos, String fecNac, int movil, String direccion, int codPostal, String ciudad, String provincia,String tipoRol, File ruta, int id){
     Usuario u = new Usuario();
     gu = new GestorUsuarios();
