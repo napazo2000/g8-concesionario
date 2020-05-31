@@ -16,6 +16,7 @@ import Conexion.Conectar;
 
 @SuppressWarnings("serial")
 public class VistaIniciarSesion extends JFrame {
+	//variables
 	private javax.swing.JLabel title;	
 	private javax.swing.JLabel texto_Usuario;
 	private javax.swing.JLabel texto_Password;
@@ -29,11 +30,14 @@ public class VistaIniciarSesion extends JFrame {
 	private javax.swing.JButton BtnLogin;
 	
 	public VistaIniciarSesion() {
+		//inicia componentes
 		initComponents();
+		//escala la venta al maximo tamaño de la ventana
 		setExtendedState(MAXIMIZED_BOTH);
 	}
-	
+	//iniciar componentes
 	private void initComponents() {
+		//tipografia
 		Font negrita = new Font("Arial", Font.BOLD, 30);
 		Font estandar = new Font("Arial", Font.PLAIN, 20);
 		Font italic = new Font("Arial", Font.ITALIC, 20);
@@ -59,6 +63,7 @@ public class VistaIniciarSesion extends JFrame {
 		BtnLogin = new javax.swing.JButton();
 		BtnLogin.setText("Acceder");
 		BtnLogin.setFont(estandar);
+		//boton logear
 		BtnLogin.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				BtnLoginActionListener(evt);
@@ -72,7 +77,7 @@ public class VistaIniciarSesion extends JFrame {
 		panel2.setBorder(BorderFactory.createLineBorder(Color.black));
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar sesion");
-        
+        //panel horizontal
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -85,6 +90,7 @@ public class VistaIniciarSesion extends JFrame {
                 )
             .addComponent(logo)
         );
+		//panel vertical
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -98,8 +104,8 @@ public class VistaIniciarSesion extends JFrame {
             );
         
         texto_Usuario.setText("Usuario:");
-        texto_Password.setText("Contrase�a:");
-        
+        texto_Password.setText("Contraseña:");
+        //panel horizontal para iniciar sesion
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(panel2);
         panel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -178,10 +184,14 @@ public class VistaIniciarSesion extends JFrame {
 	}
 	
 	@SuppressWarnings("deprecation")
+	//boton para logear
 	private void BtnLoginActionListener(java.awt.event.ActionEvent evt) {
+		//si el usuario y la contraseña coinciden se entra
 		if(ok(txtUsuario.getText(),txtPassword.getText())) {
+			
 			String rol = rol(txtUsuario.getText(),txtPassword.getText());
 			String n;
+			//depende del rol, entrara en una vista diferente
 			switch(rol) {
 			case "Empleado": 
 				VistaPanelEmpleado e = new VistaPanelEmpleado(pasarId(txtUsuario.getText(),txtPassword.getText()),rol); 
@@ -190,7 +200,7 @@ public class VistaIniciarSesion extends JFrame {
 				e.setVisible(true);
 				dispose();
 				break;
-			case "Mec�nico": 
+			case "Mecánico": 
 				VistaPanelMecanico m = new VistaPanelMecanico(pasarId(txtUsuario.getText(),txtPassword.getText()),rol);
 				n = ponerNombre(pasarId(txtUsuario.getText(),txtPassword.getText()));
 				m.bienvenido.setText("Bienvenido, " + n);
@@ -199,10 +209,10 @@ public class VistaIniciarSesion extends JFrame {
 				break;
 			}
 		} else {
-			msg.setText("ERROR: usuario o contrase�a incorrrectos");
+			msg.setText("ERROR: usuario o contraseña incorrrectos");
 		}
 	}
-	
+	//pone el nombre del empleado en la vista
 	public static String ponerNombre(int id) {
 		String n = null;
 		Conectar conec = new Conectar();
@@ -229,7 +239,7 @@ public class VistaIniciarSesion extends JFrame {
         }  
         return n;
 	}
-	
+	//nos pasa la id para saber si es mecanico o vendedor
 	public int pasarId(String user, String pass) {
 		int id = 0; 
 		Conectar conec = new Conectar();
@@ -257,7 +267,7 @@ public class VistaIniciarSesion extends JFrame {
 	        }   
 			return id;
 	}
-	
+	//nos comprueba las credenciales
 	private boolean ok(String user, String pass) {
 		boolean ok = false;
         Conectar conec = new Conectar();
@@ -288,7 +298,7 @@ public class VistaIniciarSesion extends JFrame {
         }   
 		return ok;
 	}
-	
+	//nos comprueba el rol de la persona
 	private String rol(String user, String password) {
 		String rol = null;
 		 Conectar conec = new Conectar();
