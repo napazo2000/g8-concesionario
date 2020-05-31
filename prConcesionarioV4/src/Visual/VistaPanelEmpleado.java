@@ -11,6 +11,7 @@ import javax.swing.GroupLayout;
 
 @SuppressWarnings("serial")
 public class VistaPanelEmpleado extends JFrame {
+	//variables
 	public javax.swing.JLabel bienvenido;
 	private javax.swing.JLabel title;
 	private javax.swing.JButton ultimasGestiones;
@@ -31,11 +32,14 @@ public class VistaPanelEmpleado extends JFrame {
 	public VistaPanelEmpleado(int value, String r) {
 		idVendedor = value;
 		rol = r;
+		//inicia componente
 		initComponents();
+		//escala la ventana al tama帽o de la pantalla
 		setExtendedState(MAXIMIZED_BOTH);
 	}
 	
 	public void initComponents() {
+		//tipografia
 		Font negrita = new Font("Arial", Font.BOLD, 30);
 		Font estandar = new Font("Arial", Font.PLAIN, 22);
 		Font italic = new Font("Arial", Font.ITALIC, 30);
@@ -47,7 +51,7 @@ public class VistaPanelEmpleado extends JFrame {
 		title.setFont(estandar);
 		title.setText("PANEL DE CONTROL:");
 		title.setFont(negrita);
-		
+		///botones
 		ultimasGestiones = new javax.swing.JButton();
 		venta = new javax.swing.JButton();
 		alquiler = new javax.swing.JButton();
@@ -63,49 +67,49 @@ public class VistaPanelEmpleado extends JFrame {
 		gestorVehiculos.setFont(estandar);
 		gestorUsuarios.setFont(estandar);
 		miPerfil.setFont(estandar);
-		
-		BtnExit.setText("Cerrar sesi髇");
+		//boton cerrar sesion
+		BtnExit.setText("Cerrar sesi贸n");
 		BtnExit.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				BtnExitActionPerformed(evt);
 			}
 		});
-		
-		ultimasGestiones.setText("趌timas gestiones");
+		//boton ultimas gestiones, donde veremos los ultimos contratos realizados
+		ultimasGestiones.setText("脷ltimas gestiones");
 		ultimasGestiones.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 					ultimasGestionesActionPerformed(evt);				
 			}
 		});
-		
+		//nueva venta, donde se producira una nueva gestion
 		venta.setText("Nueva venta");
 		venta.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				ventaActionPerformed(evt);
 			}
 		});	
-		
+		//nuevo alquiler, donde se producir谩 una nueva gesti贸n
 		alquiler.setText("Nuevo alquiler");
 		alquiler.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				alquilerActionPerformed(evt);
 			}
 		});
-		
-		gestorVehiculos.setText("Gestor de Veh韈ulos");
+		//gestor veh铆culo, acceso a la gesti贸n del cat谩logo de veh铆culos
+		gestorVehiculos.setText("Gestor de Veh铆culos");
 		gestorVehiculos.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				gestorVehiculosActionPerformed(evt);
 			}
 		});
-		
+		//gestor usuarios, acceso a la gesti贸n de todos los usuarios
 		gestorUsuarios.setText("Gestor de clientes");
 		gestorUsuarios.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				gestorUsuariosActionPerformed(evt);
 			}
 		});
-		
+		//mi perfil, nos mostrar谩 los datos del empleado que haya iniciado sesi贸n
 		miPerfil.setText("Mi perfil");
 		miPerfil.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -121,7 +125,7 @@ public class VistaPanelEmpleado extends JFrame {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Panel de Control");
 		
-        
+        //panel para mi perfil
         javax.swing.GroupLayout jPanel0Layout = new javax.swing.GroupLayout(panel0);
         jPanel0Layout.setHorizontalGroup(
         	jPanel0Layout.createParallelGroup(Alignment.TRAILING)
@@ -147,7 +151,7 @@ public class VistaPanelEmpleado extends JFrame {
         			.addContainerGap(69, Short.MAX_VALUE))
         );
         panel0.setLayout(jPanel0Layout);
-        
+        //paneles centrales, donde se encuentran todos los botones
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -235,43 +239,43 @@ public class VistaPanelEmpleado extends JFrame {
             pack();
             setLocationRelativeTo(null);
 	}
-	
+	//bot贸n para cerrar sesi铆on
 	private void BtnExitActionPerformed(java.awt.event.ActionEvent evt) {
 		VistaIniciarSesion v = new VistaIniciarSesion();
 		v.setVisible(true);
 		dispose();
 	}
-	
+	//bot贸n que accede a ultimas gestiones
 	private void ultimasGestionesActionPerformed(ActionEvent evt) {
 		VistaGestorOperaciones v = new VistaGestorOperaciones(idVendedor,rol);
 		v.setVisible(true);
 		dispose();
 	}
-	
+	//bot贸n que nos da acceso a una nueva venta
 	private void ventaActionPerformed(ActionEvent evt) {
 		VistaVenta v = new VistaVenta(idVendedor,rol);
 		v.setVisible(true);
 		dispose();
 	}
-
+	//bot贸n que nos da acceso a un nuevo alquiler
 	private void alquilerActionPerformed(ActionEvent evt) {
 		VistaAlquiler v = new VistaAlquiler(idVendedor,rol);
 		v.setVisible(true);
 		dispose();
 	}
-	
+	//bot贸n para gestionar veh铆culos
 	private void gestorVehiculosActionPerformed(java.awt.event.ActionEvent evt) {
 		VistaGestorVehiculos v = new VistaGestorVehiculos(idVendedor,rol);
 		v.setVisible(true);
 		dispose();
 	}
-	
+	//bot贸n para gestiones usuarios
 	private void gestorUsuariosActionPerformed(java.awt.event.ActionEvent evt) {
 		VistaGestorUsuarios v = new VistaGestorUsuarios(idVendedor,rol);
 		v.setVisible(true);
 		dispose();
 	}
-	
+	//bot贸n para ver datos del usuario
 	private void miPerfilActionPerformed(ActionEvent evt) {
 		VistaMiPerfil v = new VistaMiPerfil(idVendedor,rol);
 		v.setVisible(true);
