@@ -10,6 +10,9 @@ import Model.GestorVehiculos;
 import Model.Vehiculo;
 import Tabla.TablaGestorVehiculos;
 
+//A diferencia del gestorVehiculo, en este caso solo tendrá accesos a los vehículos que necesiten revisión, revisandolos y
+//cambiandoles el estado
+
 @SuppressWarnings("serial")
 public class VistaGestorVehiculosMecanico extends JFrame {
 	  //variables
